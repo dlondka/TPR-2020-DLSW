@@ -1,9 +1,0 @@
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.deps.json
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.dll
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\bin\Debug\netstandard2.0\ClassLibrary1.pdb
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.csprojAssemblyReference.cache
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.AssemblyInfoInputs.cache
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.AssemblyInfo.cs
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.csproj.CoreCompileInputs.cache
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.dll
-C:\Users\londk\VisualStudio Projects\TPR-2020-DLSW\TPRlab01\ClassLibrary1\obj\Debug\netstandard2.0\ClassLibrary1.pdb
