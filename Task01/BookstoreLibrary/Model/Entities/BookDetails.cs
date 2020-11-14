@@ -44,7 +44,7 @@ namespace BookstoreLibrary.Model.Entities
 
         public override string ToString()
         {
-            return $"BookDetails: {Book}, price = {GrossPrice}, tax = {Tax}, count = {Count} description = {Description}";
+            return $"Book details: {Book}, price: {GrossPrice}, tax: {Tax * 100}%, count: {Count}, description: \"{Description}\"\n";
         }
     }
 }
