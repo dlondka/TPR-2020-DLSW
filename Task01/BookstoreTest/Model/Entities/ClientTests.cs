@@ -26,7 +26,7 @@ namespace BookstoreLibrary.Model.Entities.Tests
 		public void GetHashCodeTest()
 		{
 			Client C1 = new Client("John", "Doe", "21157772115", "606211568");
-			Client C2 = new Client("John", "Doe", "21157772115", "606211568");
+			Client C2 = new Client("Jon", "Snow", "21157772115", "606211568");
 			Assert.AreEqual(C1.GetHashCode(), C1.GetHashCode());
 			Assert.AreNotEqual(C1.GetHashCode(), C2.GetHashCode());
 		}

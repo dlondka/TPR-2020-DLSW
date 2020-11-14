@@ -1,4 +1,6 @@
-﻿namespace BookstoreLibrary.Model.Entities
+﻿using System.Collections.Generic;
+
+namespace BookstoreLibrary.Model.Entities
 {
 	public class Client
 	{
@@ -26,8 +28,14 @@
 
 		public override int GetHashCode()
 		{
-			return base.GetHashCode();
+			int hashCode = -1822206648;
+			hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(FirstName);
+			hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(LastName);
+			hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PESEL);
+			hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(PhoneNumber);
+			return hashCode;
 		}
+
 
 		public override string ToString()
 		{

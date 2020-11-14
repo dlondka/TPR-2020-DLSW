@@ -6,7 +6,7 @@ namespace BookstoreLibrary.Model.Entities
 {
 	public class Purchase
 	{
-		Client Client { get; set; }
+		public Client Client { get; set; }
 		public DateTime PurchaseTime { get; set; }
 		public BookDetails BookDetails { get; set; }
 
