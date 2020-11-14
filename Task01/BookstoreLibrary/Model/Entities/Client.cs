@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BookstoreLibrary.Model.Entities
+﻿namespace BookstoreLibrary.Model.Entities
 {
-	class Client
+	public class Client
 	{
-		private string FirstName { get; set; }
-		private string LastName { get; set; }
-		private string PESEL { get; set; }
-		private string PhoneNumber { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
+		public string PESEL { get; set; }
+		public string PhoneNumber { get; set; }
 
 		public Client(string firstName, string lastName, string PESEL, string phoneNumber)
 		{
@@ -35,7 +31,7 @@ namespace BookstoreLibrary.Model.Entities
 
 		public override string ToString()
 		{
-			return $"Client: {FirstName} {LastName}, PESEL: {PESEL}, phone number: {PhoneNumber}";
+			return $"Client: {FirstName} {LastName}, PESEL: {PESEL}, phone number: {PhoneNumber}\n";
 		}
 	}
 }
