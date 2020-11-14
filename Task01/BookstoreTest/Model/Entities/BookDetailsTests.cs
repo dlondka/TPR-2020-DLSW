@@ -37,7 +37,7 @@ namespace BookstoreLibrary.Model.Entities.Tests
         [TestMethod()]
         public void ToStringTest()
         {
-            Assert.AreEqual($"Book details: {book}, price: 19,99, tax: 5,00%, count: 12, description: \"Book about adventures of young Wizzard Harry\"\n", bookDetails.ToString());
+            Assert.AreEqual(bookDetails.ToString(), $"BookDetails: {book}, price = 19,99, tax = 0,05, count = 12 description = Book about adventures of young Wizzard Harry");
         }
     }
 }
