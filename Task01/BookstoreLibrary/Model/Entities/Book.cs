@@ -1,4 +1,6 @@
-﻿namespace BookstoreLibrary.Model.Entities
+﻿using System.Collections.Generic;
+
+namespace BookstoreLibrary.Model.Entities
 {
 	public class Book
 	{
@@ -18,22 +20,21 @@
 			return $"Book: name = {Name}, author = {Author}, year = {Year}";
 		}
 
-		public override bool Equals(object obj)
-		{
-			if (obj == null || this.GetType() != obj.GetType())
-			{
-				return false;
-			}
-			else
-			{
-				Book b = (Book)obj;
-				return (this.Name.Equals(b.Name) && this.Author.Equals(b.Author) && this.Year.Equals(b.Year));
-			}
-		}
+        public override bool Equals(object obj)
+        {
+            return obj is Book book &&
+                   Name == book.Name &&
+                   Author == book.Author &&
+                   Year == book.Year;
+        }
 
-		public override int GetHashCode()
-		{
-			return base.GetHashCode();
-		}
-	}
+        public override int GetHashCode()
+        {
+            int hashCode = 151300744;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Author);
+            hashCode = hashCode * -1521134295 + Year.GetHashCode();
+            return hashCode;
+        }
+    }
 }
