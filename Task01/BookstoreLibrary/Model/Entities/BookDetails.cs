@@ -4,8 +4,8 @@ using System.Text;
 
 namespace BookstoreLibrary.Model.Entities
 {
-    public class Stock
-    {
-        public Stock() { }
-    }
+	public class BookDetails
+	{
+		public BookDetails() { }
+	}
 }
