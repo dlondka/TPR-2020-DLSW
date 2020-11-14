@@ -5,7 +5,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{379C4E16-8BFD-4277-A42A-900FF197C638}</ProjectGuid>
+    <ProjectGuid>{9A4FAA25-9B18-4575-B4C4-64EEA43B2420}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BookstoreTest</RootNamespace>
@@ -56,9 +56,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BookstoreLibrary\BookstoreLibrary.csproj">
-      <Project>{BD1A14E3-2288-4F09-82AA-168A0D742D59}</Project>
-      <Name>BookstoreLibrary</Name>
+    <ProjectReference Include="..\BookstoreLib\BookstoreLib.csproj">
+      <Project>{9CBF2AC5-5B12-4058-9582-8BE0B70C0D3E}</Project>
+      <Name>BookstoreLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
