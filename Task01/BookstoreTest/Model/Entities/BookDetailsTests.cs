@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace BookstoreLibrary.Model.Entities.Tests
 {
     [TestClass()]
-    public class BookDetailsTests
+    public class StockTests
     {
         static Book book = new Book("Harry Potter", "J.K. Rowling", 1997);
         BookDetails bookDetails = new BookDetails(book, new decimal(19.99), new decimal(0.05), 12, "Book about adventures of young Wizzard Harry");

@@ -8,13 +8,31 @@ using System.Threading.Tasks;
 
 namespace BookstoreLibrary.Model.Entities.Tests
 {
-    [TestClass()]
-    public class PurchaseTests
-    {
-        [TestMethod()]
-        public void PurchaseTest()
-        {
-            Assert.Fail();
-        }
-    }
+	[TestClass()]
+	public class PurchaseTests
+	{
+		[TestMethod()]
+		public void PurchaseTest()
+		{
+			Assert.Fail();
+		}
+
+		[TestMethod()]
+		public void EqualsTest()
+		{
+			throw new NotImplementedException();
+		}
+
+		[TestMethod()]
+		public void GetHashCodeTest()
+		{
+			throw new NotImplementedException();
+		}
+
+		[TestMethod()]
+		public void ToStringTest()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }
