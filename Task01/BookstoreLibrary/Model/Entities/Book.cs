@@ -4,11 +4,11 @@ using System.Text;
 
 namespace BookstoreLibrary.Model.Entities
 {
-    class Book
+    public class Book
     {
-        private string Name { get; set; }
-        private string Author { get; set; }
-        private int Year { get; set; }
+        public string Name;
+        public string Author { get; set; }
+        public int Year { get; set; }
 
         public Book(string name, string author, int year)
         {
@@ -19,7 +19,7 @@ namespace BookstoreLibrary.Model.Entities
 
         public override string ToString()
         {
-            return $"Book: name = {Name}, author = {Author}, year = {Year};";
+            return $"Book: name = {Name}, author = {Author}, year = {Year}";
         }
 
         public override bool Equals(object obj)

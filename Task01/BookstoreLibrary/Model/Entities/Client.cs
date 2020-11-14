@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BookstoreLibrary.Model.Entities
 {
-	class Client
+	public class Client
 	{
 		private string FirstName { get; set; }
 		private string LastName { get; set; }
