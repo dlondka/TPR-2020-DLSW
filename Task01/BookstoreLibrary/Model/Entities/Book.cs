@@ -17,8 +17,8 @@ namespace BookstoreLibrary.Model.Entities
 
 		public override string ToString()
 		{
-            return $"Book: \"{Name}\" by {Author} ({Year})";
-        }
+			return $"Book: \"{Name}\" by {Author} ({Year})\n";
+		}
 
         public override bool Equals(object obj)
         {
