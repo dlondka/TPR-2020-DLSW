@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BookstoreLibrary.Model.Entities
+namespace BookstoreLibrary
 {
 	public class Book
 	{
