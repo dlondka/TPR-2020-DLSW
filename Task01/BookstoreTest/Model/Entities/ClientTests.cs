@@ -3,10 +3,10 @@
 namespace BookstoreLibrary.Model.Entities.Tests
 {
 	[TestClass()]
-	public class ClientTest
+	public class ClientTests
 	{
 		[TestMethod()]
-		public void ConstructorTest()
+		public void ClientTest()
 		{
 			Client C1 = new Client("John", "Doe", "21157772115", "606211568");
 			Assert.IsTrue(C1.FirstName == "John" && C1.LastName == "Doe" && C1.PESEL == "21157772115" && C1.PhoneNumber == "606211568");
