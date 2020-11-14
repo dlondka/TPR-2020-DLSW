@@ -18,7 +18,7 @@ namespace BookstoreLibrary.Model.Entities.Tests
         [TestMethod()]
         public void ToStringTest()
         {
-            Assert.AreEqual(book.ToString(), "Book: name = Harry Potter, author = J.K. Rowling, year = 1997");
+            Assert.AreEqual(book.ToString(), "Book: \"Harry Potter\" by J.K. Rowling (1997)");
         }
 
         Book book2 = new Book("Krzyżacy", "Henryk Sienkiewicz", 1900);
