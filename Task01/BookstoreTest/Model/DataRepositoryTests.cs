@@ -232,49 +232,85 @@ namespace BookstoreLibrary.Tests
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetBookDetails(5));
-			dataRepository.getBook
+			dataRepository.AddBookDetails(bookDetails);
+			Assert.AreEqual(dataRepository.GetBookDetails(5), bookDetails);
 		}
 
 		[TestMethod()]
 		public void GetClientTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetClient(5));
+			dataRepository.AddClient(client);
+			Assert.AreEqual(dataRepository.GetClient(5), client);
 		}
 
 		[TestMethod()]
 		public void GetPurchaseTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetPurchase(5));
+			dataRepository.AddPurchase(purchase);
+			Assert.AreEqual(dataRepository.GetPurchase(5), purchase);
 		}
 
 		[TestMethod()]
 		public void UpdateBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.UpdateBook(20, book));
+			Assert.AreNotEqual(dataRepository.GetBook(4), book);
+			dataRepository.UpdateBook(4, book);
+			Assert.AreEqual(dataRepository.GetBook(4), book);
 		}
 
 		[TestMethod()]
 		public void UpdateBookDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.UpdateBookDetails(bookDetails, 22));
+			Assert.AreNotEqual(dataRepository.GetBookDetails(4), bookDetails);
+			dataRepository.UpdateBookDetails(bookDetails, 4);
+			Assert.AreEqual(dataRepository.GetBookDetails(4), bookDetails);
 		}
 
 		[TestMethod()]
 		public void UpdateClientTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.UpdateClient(client, 22));
+			Assert.AreNotEqual(dataRepository.GetClient(4), client);
+			dataRepository.UpdateClient(client, 4);
+			Assert.AreEqual(dataRepository.GetClient(4), client);
 		}
 
 		[TestMethod()]
 		public void UpdatePurchaseTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.UpdatePurchase(purchase, 33));
+			Assert.AreNotEqual(dataRepository.GetPurchase(3), purchase);
+			dataRepository.UpdatePurchase(purchase, 3);
+			Assert.AreEqual(dataRepository.GetPurchase(3), purchase);
 		}
 	}
 }
