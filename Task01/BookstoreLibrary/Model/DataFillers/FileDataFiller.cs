@@ -16,7 +16,7 @@ namespace BookstoreLibrary
 			int key = 1;
 			int bookDetailsCounter = 1;
 			int purchaseCounter = 1;
-
+			Console.WriteLine("Project dir: " + "$(ProjectDir)");
 			try
 			{
 				using (StreamReader sr = new StreamReader("..\\..\\..\\BookstoreLibrary\\Model\\DataFillers\\SampleData.txt"))
