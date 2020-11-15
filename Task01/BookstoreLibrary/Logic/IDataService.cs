@@ -8,7 +8,7 @@ namespace BookstoreLibrary
 		void AddBook(Book book);
 		void AddClient(Client client);
 		void AddBookDetails(BookDetails bookDetails);
-		Purchase BuyBook(Client client, BookDetails bookDetails);
+		void BuyBook(Client client, BookDetails bookDetails);
 		IEnumerable<Client> GetAllClients();
 		IEnumerable<Book> GetAllBooks();
 		IEnumerable<BookDetails> GetAllBookDetails();
