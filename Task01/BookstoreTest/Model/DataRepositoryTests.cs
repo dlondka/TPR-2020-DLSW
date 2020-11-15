@@ -51,7 +51,6 @@ namespace BookstoreLibrary.Tests
 			dataRepository.AddBookDetails(bookDetails);
 			Assert.AreEqual(dataRepository.GetAllBooksDetails().Count(), 6);
 			Assert.AreEqual(dataRepository.GetBookDetails(5), bookDetails);
-			Assert.AreNotEqual(dataRepository.GetBookDetails(2), bookDetails);
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.AddBookDetails(bookDetails));
 		}
 
@@ -59,132 +58,192 @@ namespace BookstoreLibrary.Tests
 		public void AddClientTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			dataRepository.AddClient(client);
+			Assert.AreEqual(dataRepository.GetAllClients().Count(), 6);
+			Assert.AreEqual(dataRepository.GetClient(5), client);
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.AddClient(client));
 		}
 
 		[TestMethod()]
 		public void AddPurchaseTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+			dataRepository.AddPurchase(purchase);
+
+			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 6);
+			Assert.AreEqual(dataRepository.GetPurchase(5), purchase);
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.AddPurchase(purchase));
 		}
 
 		[TestMethod()]
 		public void DeleteBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Book book = new Book("Bk name", "Bk author", 2010);
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeleteBook(dataRepository.FindBook(book)));
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeleteBook(123));
+			Assert.AreEqual(dataRepository.GetAllBooks().Count(), 5);
+			dataRepository.DeleteBook(4);
+			Assert.AreEqual(dataRepository.GetAllBooks().Count(), 4);
 		}
 
 		[TestMethod()]
 		public void DeleteBookDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeleteBookDetails(bookDetails));
+			dataRepository.AddBookDetails(bookDetails);
+			Assert.AreEqual(dataRepository.GetAllBooksDetails().Count(), 6);
+			dataRepository.DeleteBookDetails(bookDetails);
+			Assert.AreEqual(dataRepository.GetAllBooksDetails().Count(), 5);
 		}
 
 		[TestMethod()]
 		public void DeleteClientTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeleteClient(client));
+			dataRepository.AddClient(client);
+			Assert.AreEqual(dataRepository.GetAllClients().Count(), 6);
+			dataRepository.DeleteClient(client);
+			Assert.AreEqual(dataRepository.GetAllClients().Count(), 5);
 		}
 
 		[TestMethod()]
 		public void DeletePurchaseTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeletePurchase(purchase));
+			dataRepository.AddPurchase(purchase);
+			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 6);
+			dataRepository.DeletePurchase(purchase);
+			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 5);
 		}
 
 		[TestMethod()]
 		public void FindBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void FindBookDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void FindClientTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void FindPurchaseTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void GetAllBooksTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void GetAllBooksDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void GetAllClientsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void GetAllPurchasesTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void GetBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void GetBookDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void GetClientTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void GetPurchaseTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void UpdateBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void UpdateBookDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void UpdateClientTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 
 		[TestMethod()]
 		public void UpdatePurchaseTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Assert.ThrowsException<ArgumentException>(() => dataRepository);
 		}
 	}
 }
