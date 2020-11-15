@@ -56,6 +56,8 @@ namespace BookstoreLibrary.Tests
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			dataService.AddBook(book);
+			dataService.AddBookDetails(bookDetails);
 
 			Assert.AreEqual(dataService.GetNumberOfBooks(book), 33);
 			dataService.BuyBook(client, bookDetails);

@@ -30,7 +30,7 @@ namespace BookstoreLibrary
 
 		public void BuyBook(Client client, BookDetails bookDetails)
 		{
-			if (DataRepository.GetBookCount(bookDetails.Book) > 0)
+			if (!(DataRepository.GetBookCount(bookDetails.Book) > 0))
 			{
 				throw new ArgumentException("There is no such book available");
 			}
