@@ -177,23 +177,23 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetPurchasesBetweenTest()
 		{
-			//DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			//DataService dataService = new DataService(dataRepository);
-			//DateTime startDate = new DateTime();
-			//Book book = new Book("Bk name", "Bk author", 2010);
-			//BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
-			//Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
-			//dataService.AddBook(book);
-			//dataService.AddBookDetails(bookDetails);
-			//dataService.AddClient(client);
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			DataService dataService = new DataService(dataRepository);
+			DateTime startDate = new DateTime();
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			dataService.AddBook(book);
+			dataService.AddBookDetails(bookDetails);
+			dataService.AddClient(client);
 
-			//dataService.BuyBook(client, bookDetails);
-			//DateTime endDate = new DateTime();
+			dataService.BuyBook(client, bookDetails);
+			DateTime endDate = new DateTime();
 
-			//CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(dataService.GetAllPurchases().Count() - 1) }, dataService.GetPurchasesBetween(startDate, endDate).ToList());
+			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(dataService.GetAllPurchases().Count() - 1) }, dataService.GetPurchasesBetween(startDate, endDate).ToList());
 
 
-			throw new NotImplementedException();
+			//throw new NotImplementedException();
 		}
 
 		[TestMethod()]
