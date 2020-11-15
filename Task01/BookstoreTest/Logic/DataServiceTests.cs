@@ -65,22 +65,26 @@ namespace BookstoreLibrary.Tests
 		}
 
 		[TestMethod()]
-		public void DeleteBookTest()
+		public void DeleteBookByBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllBooks().Count());
+			dataService.DeleteBook(dataService.GetAllBooks().First());
+			Assert.AreEqual(4, dataService.GetAllBooks().Count());
 
 		}
 
 		[TestMethod()]
-		public void DeleteBookTest1()
+		public void DeleteBookByKeyTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllBooks().Count());
+			dataService.DeleteBook(dataService.GetBook(0));
+			Assert.AreEqual(4, dataService.GetAllBooks().Count());
 		}
 
 		[TestMethod()]
@@ -89,7 +93,9 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllBookDetails().Count());
+			dataService.DeleteBookDetails(dataService.GetBookDetails(0));
+			Assert.AreEqual(4, dataService.GetAllBookDetails().Count());
 		}
 
 		[TestMethod()]
@@ -98,7 +104,9 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllClients().Count());
+			dataService.DeleteClient(dataService.GetClient(0));
+			Assert.AreEqual(4, dataService.GetAllClients().Count());
 		}
 
 		[TestMethod()]
@@ -107,7 +115,9 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllPurchases().Count());
+			dataService.DeletePurchase(dataService.GetPurchase(0));
+			Assert.AreEqual(4, dataService.GetAllPurchases().Count());
 		}
 
 		[TestMethod()]
@@ -116,7 +126,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllBookDetails().Count());
 		}
 
 		[TestMethod()]
@@ -125,7 +135,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllBooks().Count());
 		}
 
 		[TestMethod()]
@@ -134,7 +144,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllClients().Count());
 		}
 
 		[TestMethod()]
@@ -143,32 +153,45 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(5, dataService.GetAllPurchases().Count());
 		}
 
 		[TestMethod()]
-		public void GetNumberOfBooksTest()
+		public void GetNumberOfBooksByBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(dataService.GetBookDetails(0).Count, dataService.GetNumberOfBooks(dataService.GetBookDetails(0).Book));
 		}
 
 		[TestMethod()]
-		public void GetNumberOfBooksTest1()
+		public void GetNumberOfBooksByKeyTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			Assert.AreEqual(dataService.GetBookDetails(1).Count, dataService.GetNumberOfBooks(1));
 		}
 
 		[TestMethod()]
 		public void GetPurchasesBetweenTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			DataService dataService = new DataService(dataRepository);
+			//DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			//DataService dataService = new DataService(dataRepository);
+			//DateTime startDate = new DateTime();
+			//Book book = new Book("Bk name", "Bk author", 2010);
+			//BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			//Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			//dataService.AddBook(book);
+			//dataService.AddBookDetails(bookDetails);
+			//dataService.AddClient(client);
+
+			//dataService.BuyBook(client, bookDetails);
+			//DateTime endDate = new DateTime();
+
+			//CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(dataService.GetAllPurchases().Count() - 1) }, dataService.GetPurchasesBetween(startDate, endDate).ToList());
+
 
 			throw new NotImplementedException();
 		}
@@ -179,7 +202,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			throw new NotImplementedException();
+			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(0) }, dataService.GetPurchasesForBook(dataService.GetBook(0)).ToList());
 		}
 
 		[TestMethod()]
@@ -188,7 +211,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			Assert.AreEqual(dataService.GetPurchase(0), dataService.GetPurchasesForClient(dataService.GetPurchase(0).Client));
+			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(0) }, dataService.GetPurchasesForClient(dataService.GetClient(0)).ToList());
 		}
 
 		[TestMethod()]
@@ -197,8 +220,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			//Assert.AreEqual(dataService.GetAllBooks[0]
-			throw new NotImplementedException();
+			Assert.AreEqual(dataService.GetAllBooks().First(), dataService.GetBook(0));
 		}
 
 		[TestMethod()]
@@ -206,7 +228,8 @@ namespace BookstoreLibrary.Tests
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
-			throw new NotImplementedException();
+
+			Assert.AreEqual(dataService.GetAllBookDetails().First(), dataService.GetBookDetails(0));
 		}
 
 		[TestMethod()]
@@ -214,7 +237,8 @@ namespace BookstoreLibrary.Tests
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
-			throw new NotImplementedException();
+
+			Assert.AreEqual(dataService.GetAllClients().First(), dataService.GetClient(0));
 		}
 
 
@@ -223,7 +247,8 @@ namespace BookstoreLibrary.Tests
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
-			throw new NotImplementedException();
+
+			Assert.AreEqual(dataService.GetAllPurchases().First(), dataService.GetPurchase(0));
 		}
 	}
 }

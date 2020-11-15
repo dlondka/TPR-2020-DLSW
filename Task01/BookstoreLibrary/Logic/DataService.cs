@@ -125,7 +125,7 @@ namespace BookstoreLibrary
 
 		public IEnumerable<Purchase> GetPurchasesForClient(Client client)
 		{
-			return DataRepository.GetAllPurchases().Where(p => (p.Client.Equals(client)));
+			return DataRepository.GetAllPurchases().Where(p => p.Client.Equals(client));
 		}
 	}
 }
