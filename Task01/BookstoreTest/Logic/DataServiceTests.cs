@@ -179,18 +179,21 @@ namespace BookstoreLibrary.Tests
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
-			DateTime startDate = new DateTime();
-			Book book = new Book("Bk name", "Bk author", 2010);
-			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
-			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
-			dataService.AddBook(book);
-			dataService.AddBookDetails(bookDetails);
-			dataService.AddClient(client);
+			DateTime startDate = new DateTime(2015, 1, 1, 0, 0, 0);
+			DateTime endDate = new DateTime(2018, 1, 1, 0, 0, 0);
 
-			dataService.BuyBook(client, bookDetails);
-			DateTime endDate = new DateTime();
+			for (int i = 0; i < dataService.GetAllPurchases().Count(); i++)
+			{
+				if (dataService.GetPurchase(i).PurchaseTime >= startDate && dataService.GetPurchase(i).PurchaseTime <= endDate)
+				{
+					Assert.IsTrue(dataService.GetPurchasesBetween(startDate, endDate).Contains(dataService.GetPurchase(i)));
+				}
+				else
+				{
+					Assert.IsFalse(dataService.GetPurchasesBetween(startDate, endDate).Contains(dataService.GetPurchase(i)));
+				}
 
-			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(dataService.GetAllPurchases().Count() - 1) }, dataService.GetPurchasesBetween(startDate, endDate).ToList());
+			}
 
 
 			//throw new NotImplementedException();
