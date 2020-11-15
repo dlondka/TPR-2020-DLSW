@@ -18,6 +18,8 @@ namespace BookstoreLibrary
         void DeleteClient(Client client);
         IEnumerable<Client> GetAllClients();
 
+        int GetBookCount(Book book);
+
 
         void AddBookDetails(BookDetails bookDetails);
         BookDetails GetBookDetails(int index);

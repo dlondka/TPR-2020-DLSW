@@ -230,5 +230,17 @@ namespace BookstoreLibrary
 			}
 			DataContext.Purchases[index] = purchase;
 		}
+
+		public int GetBookCount(Book book)
+		{
+			for (int i = 0; i < DataContext.BooksDetails.Count; i++)
+			{
+				if (DataContext.BooksDetails[i].Book.Equals(book))
+                {
+					return DataContext.BooksDetails[i].Count;
+                }
+			}
+			throw new ArgumentException("Book you are looking for does not exist");
+		}
 	}
 }
