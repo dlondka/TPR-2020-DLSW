@@ -21,7 +21,7 @@ namespace BookstoreLibrary
 			for (int i = 0; i < 5; i++)
 			{
 				dataContext.Clients.Add(GenerateClient());
-				dataContext.Books.Add(i + 1, GenerateBook());
+				dataContext.Books.Add(i, GenerateBook());
 				dataContext.BooksDetails.Add(GenerateBookDetails(i, dataContext));
 				dataContext.Purchases.Add(GeneratePurchase(i, dataContext));
 			}
