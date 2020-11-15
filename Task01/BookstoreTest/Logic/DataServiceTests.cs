@@ -56,6 +56,8 @@ namespace BookstoreLibrary.Tests
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			dataService.AddBook(book);
+			dataService.AddBookDetails(bookDetails);
 
 			Assert.AreEqual(dataService.GetNumberOfBooks(book), 33);
 			dataService.BuyBook(client, bookDetails);
@@ -127,6 +129,7 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(5, dataService.GetAllBookDetails().Count());
+			Assert.IsInstanceOfType(dataService.GetAllBookDetails(), typeof(IEnumerable<BookDetails>));
 		}
 
 		[TestMethod()]
@@ -136,6 +139,7 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(5, dataService.GetAllBooks().Count());
+			Assert.IsInstanceOfType(dataService.GetAllBooks(), typeof(IEnumerable<Book>));
 		}
 
 		[TestMethod()]
@@ -145,6 +149,7 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(5, dataService.GetAllClients().Count());
+			Assert.IsInstanceOfType(dataService.GetAllClients(), typeof(IEnumerable<Client>));
 		}
 
 		[TestMethod()]
@@ -154,6 +159,7 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(5, dataService.GetAllPurchases().Count());
+			Assert.IsInstanceOfType(dataService.GetAllPurchases(), typeof(IEnumerable<Purchase>));
 		}
 
 		[TestMethod()]
