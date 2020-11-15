@@ -65,47 +65,47 @@ namespace BookstoreLibrary
 
 		public IEnumerable<BookDetails> GetAllBookDetails()
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetAllBooksDetails();
 		}
 
 		public IEnumerable<Book> GetAllBooks()
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetAllBooks();
 		}
 
 		public IEnumerable<Client> GetAllClients()
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetAllClients();
 		}
 
 		public IEnumerable<Purchase> GetAllPurchases()
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetAllPurchases();
 		}
 
 		public int GetNumberOfBooks(Book book)
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetBookCount(book);
 		}
 
 		public int GetNumberOfBooks(int key)
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetBookCount(DataRepository.GetBook(key));
 		}
 
 		public IEnumerable<Purchase> GetPurchasesBetween(DateTime firstDate, DateTime secondDate)
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetAllPurchases().Where(p => (p.PurchaseTime.CompareTo(firstDate) == 1) && (p.PurchaseTime.CompareTo(secondDate) == -1));
 		}
 
 		public IEnumerable<Purchase> GetPurchasesForBook(Book book)
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetAllPurchases().Where(p => (p.BookDetails.Book.Equals(book)));
 		}
 
 		public IEnumerable<Purchase> GetPurchasesForClient(Client client)
 		{
-			throw new NotImplementedException();
+			return DataRepository.GetAllPurchases().Where(p => (p.Client.Equals(client)));
 		}
 	}
 }
