@@ -4,26 +4,26 @@ namespace BookstoreLibrary
 {
 	public class Book
 	{
-		public string Name;
+		public string Title;
 		public string Author { get; set; }
 		public int Year { get; set; }
 
-		public Book(string name, string author, int year)
+		public Book(string title, string author, int year)
 		{
-			this.Name = name;
+			this.Title = title;
 			this.Author = author;
 			this.Year = year;
 		}
 
 		public override string ToString()
 		{
-			return $"Book: \"{Name}\" by {Author} ({Year})";
+			return $"Book: \"{Title}\" by {Author} ({Year})";
 		}
 
         public override bool Equals(object obj)
         {
             return obj is Book book &&
-                   Name == book.Name &&
+                   Title == book.Title &&
                    Author == book.Author &&
                    Year == book.Year;
         }
@@ -31,7 +31,7 @@ namespace BookstoreLibrary
         public override int GetHashCode()
         {
             int hashCode = 151300744;
-            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Name);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Title);
             hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Author);
             hashCode = hashCode * -1521134295 + Year.GetHashCode();
             return hashCode;

@@ -10,7 +10,7 @@ namespace BookstoreLibrary.Model.Entities.Tests
         [TestMethod()]
         public void BookTest()
         {
-            Assert.AreEqual(book.Name, "Harry Potter");
+            Assert.AreEqual(book.Title, "Harry Potter");
             Assert.AreEqual(book.Author, "J.K. Rowling");
             Assert.AreEqual(book.Year, 1997);
         }
