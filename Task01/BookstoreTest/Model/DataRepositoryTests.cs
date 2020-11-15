@@ -217,14 +217,22 @@ namespace BookstoreLibrary.Tests
 		public void GetBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetBook(5));
+			dataRepository.AddBook(book);
+			Assert.AreEqual(dataRepository.GetBook(5), book);
 		}
 
 		[TestMethod()]
 		public void GetBookDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetBookDetails(5));
+			dataRepository.getBook
 		}
 
 		[TestMethod()]

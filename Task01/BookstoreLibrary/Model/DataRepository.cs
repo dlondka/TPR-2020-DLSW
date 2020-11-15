@@ -13,14 +13,14 @@ namespace BookstoreLibrary
 
 		public DataRepository()
         {
-			BookKey = DataContext.Books.Count;
+			BookKey = 0;
         }
 
 		public DataRepository(IDataFiller dataFiller)
 		{
 			DataFiller = dataFiller;
 			DataFiller.Fill(DataContext);
-			BookKey = DataContext.Books.Count;
+			BookKey = DataContext.Books.Last().Key + 1;
 		}
 
 		public void AddBook(Book book)
