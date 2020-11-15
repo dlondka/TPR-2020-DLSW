@@ -23,11 +23,11 @@ namespace BookstoreLibrary.Tests
 			Assert.AreEqual("Client: Jud Smith, PESEL: 21154442115, phone number: 444442115\n", dataRepository.GetClient(3).ToString());
 			Assert.AreEqual("Client: Gage Butler, PESEL: 21155552115, phone number: 555552115\n", dataRepository.GetClient(4).ToString());
 			Assert.AreEqual(5, dataRepository.GetAllBooks().Count());
-			Assert.AreEqual("Book: \"Something Fishy\" by Wodehouse (1957)", dataRepository.GetBook(1).ToString());
-			Assert.AreEqual("Book: \"Pet Sematary\" by King (1983)", dataRepository.GetBook(2).ToString());
-			Assert.AreEqual("Book: \"Harry Potter and the Half-Blook Prince\" by Rowling (2005)", dataRepository.GetBook(3).ToString());
-			Assert.AreEqual("Book: \"Marley & Me\" by Grogan (2005)", dataRepository.GetBook(4).ToString());
-			Assert.AreEqual("Book: \"Feast\" by Masterton (1988)", dataRepository.GetBook(5).ToString());
+			Assert.AreEqual("Book: \"Something Fishy\" by Wodehouse (1957)", dataRepository.GetBook(0).ToString());
+			Assert.AreEqual("Book: \"Pet Sematary\" by King (1983)", dataRepository.GetBook(1).ToString());
+			Assert.AreEqual("Book: \"Harry Potter and the Half-Blook Prince\" by Rowling (2005)", dataRepository.GetBook(2).ToString());
+			Assert.AreEqual("Book: \"Marley & Me\" by Grogan (2005)", dataRepository.GetBook(3).ToString());
+			Assert.AreEqual("Book: \"Feast\" by Masterton (1988)", dataRepository.GetBook(4).ToString());
 			Assert.AreEqual(5, dataRepository.GetAllBooksDetails().Count());
 			Assert.AreEqual("Book details: Book: \"Something Fishy\" by Wodehouse (1957), price: 12,99, tax: 5,00%, count: 12, description: \"Something Fishy is a novel by P. G. Wodehouse, first published in the United Kingdom on 18 January 1957 by Herbert Jenkins, London and in the United States on 28 January 1957 by Simon & Schuster, Inc., New York, under the title The Butler Did It.\"\n", dataRepository.GetBookDetails(0).ToString());
 			Assert.AreEqual("Book details: Book: \"Pet Sematary\" by King (1983), price: 32,99, tax: 5,00%, count: 18, description: \"Pet Sematary is a 1983 horror novel by American writer Stephen King. The novel was nominated for a World Fantasy Award for Best Novel in 1986, and adapted into two films: one in 1989 and another in 2019. In November 2013, PS Publishing released Pet Sematary in a limited 30th-anniversary edition.\"\n", dataRepository.GetBookDetails(1).ToString());
