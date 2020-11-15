@@ -4,15 +4,23 @@ using System.Linq;
 
 namespace BookstoreLibrary
 {
-	class DataRepository : IDataRepository
+	public class DataRepository : IDataRepository
 	{
 		private DataContext DataContext = new DataContext();
+		private readonly IDataFiller DataFiller;
 
-		private int BookKey = 0;
+		private int BookKey;
+
+		public DataRepository()
+        {
+			BookKey = DataContext.Books.Count;
+        }
 
 		public DataRepository(IDataFiller dataFiller)
 		{
-			dataFiller.Fill(DataContext);
+			DataFiller = dataFiller;
+			DataFiller.Fill(DataContext);
+			BookKey = DataContext.Books.Count + 1;
 		}
 
 		public void AddBook(Book book)
