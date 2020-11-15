@@ -11,7 +11,6 @@ namespace BookstoreLibrary
         void DeleteBook(int key);
         IEnumerable<Book> GetAllBooks();
 
-
         void AddClient(Client client);
         Client GetClient(int index);
         int FindClient(Client client);

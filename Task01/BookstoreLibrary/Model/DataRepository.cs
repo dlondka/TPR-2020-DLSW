@@ -66,6 +66,13 @@ namespace BookstoreLibrary
 			{
 				throw new ArgumentException("Book with the key you used does not exist");
 			}
+			for (int i = 0; i < GetAllBooksDetails().Count(); i++)
+			{
+				if (GetBookDetails(i).Book.Equals(GetBook(key)))
+				{
+					DeleteBookDetails(GetBookDetails(i));
+				}
+			}
 			DataContext.Books.Remove(key);
 		}
 
@@ -163,7 +170,7 @@ namespace BookstoreLibrary
 
 		public BookDetails GetBookDetails(int index)
 		{
-			if (!(index <= DataContext.BooksDetails.Count() && index >= 0))
+			if (!(index < DataContext.BooksDetails.Count() && index >= 0))
 			{
 				throw new ArgumentException("Book details you are trying to get do not exist");
 			}
@@ -172,7 +179,7 @@ namespace BookstoreLibrary
 
 		public Client GetClient(int index)
 		{
-			if (!(index <= DataContext.Clients.Count() && index >= 0))
+			if (!(index < DataContext.Clients.Count() && index >= 0))
 			{
 				throw new ArgumentException("Client you are trying to get does not exist");
 			}
@@ -181,7 +188,7 @@ namespace BookstoreLibrary
 
 		public Purchase GetPurchase(int index)
 		{
-			if (!(index <= DataContext.Purchases.Count() && index >= 0))
+			if (!(index < DataContext.Purchases.Count() && index >= 0))
 			{
 				throw new ArgumentException("The purchase you are trying to get does not exist");
 			}
