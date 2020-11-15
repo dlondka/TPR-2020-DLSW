@@ -129,6 +129,7 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(5, dataService.GetAllBookDetails().Count());
+			Assert.IsInstanceOfType(dataService.GetAllBookDetails(), typeof(IEnumerable<BookDetails>));
 		}
 
 		[TestMethod()]
@@ -138,6 +139,7 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(5, dataService.GetAllBooks().Count());
+			Assert.IsInstanceOfType(dataService.GetAllBooks(), typeof(IEnumerable<Book>));
 		}
 
 		[TestMethod()]
@@ -147,6 +149,7 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(5, dataService.GetAllClients().Count());
+			Assert.IsInstanceOfType(dataService.GetAllClients(), typeof(IEnumerable<Client>));
 		}
 
 		[TestMethod()]
@@ -156,6 +159,7 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(5, dataService.GetAllPurchases().Count());
+			Assert.IsInstanceOfType(dataService.GetAllPurchases(), typeof(IEnumerable<Purchase>));
 		}
 
 		[TestMethod()]
