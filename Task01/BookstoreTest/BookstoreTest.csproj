@@ -49,7 +49,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\DataFillers\FileDataFillerTests.cs" />
     <Compile Include="Model\Entities\BookDetailsTests.cs" />
     <Compile Include="Model\Entities\ClientTests.cs" />
     <Compile Include="Model\Entities\BookTests.cs" />
