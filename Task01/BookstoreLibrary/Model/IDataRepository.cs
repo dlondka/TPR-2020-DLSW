@@ -29,7 +29,7 @@ namespace BookstoreLibrary
 
 
         void AddPurchase(Purchase purchase);
-        Book GetPurchase(int index);
+        Purchase GetPurchase(int index);
         int FindPurchase(Purchase purchase);
         void UpdatePurchase(Purchase purchase, int index);
         void DeletePurchase(Purchase purchase);
