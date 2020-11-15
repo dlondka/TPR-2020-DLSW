@@ -13,13 +13,12 @@ namespace BookstoreLibrary
 
 		private void ReadData(DataContext dataContext)
 		{
-			int key = 1;
-			int bookDetailsCounter = 1;
-			int purchaseCounter = 1;
-			Console.WriteLine("Project dir: " + "$(ProjectDir)");
+			int key = 0;
+			int bookDetailsCounter = 0;
+			int purchaseCounter = 0;
 			try
 			{
-				using (StreamReader sr = new StreamReader("..\\..\\..\\BookstoreLibrary\\Model\\DataFillers\\SampleData.txt"))
+				using (StreamReader sr = new StreamReader(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\BookstoreLibrary\\Model\\DataFillers\\SampleData.txt"))
 				{
 					string singleLine;
 					while ((singleLine = sr.ReadLine()) != null)
