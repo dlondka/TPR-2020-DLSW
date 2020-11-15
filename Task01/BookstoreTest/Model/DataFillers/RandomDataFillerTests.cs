@@ -14,7 +14,12 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void FillTest()
 		{
+			DataRepository dataRepository = new DataRepository(new RandomDataFiller());
 
+			Assert.AreEqual(5, dataRepository.GetAllClients().Count());
+			Assert.AreEqual(5, dataRepository.GetAllBooks().Count());
+			Assert.AreEqual(5, dataRepository.GetAllBooksDetails().Count());
+			Assert.AreEqual(5, dataRepository.GetAllPurchases().Count());
 		}
 	}
 }
