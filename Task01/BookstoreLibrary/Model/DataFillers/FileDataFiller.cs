@@ -11,7 +11,7 @@ namespace BookstoreLibrary
 		}
 
 
-		public void ReadData(DataContext dataContext)
+		private void ReadData(DataContext dataContext)
 		{
 			int key = 1;
 			int bookDetailsCounter = 1;
