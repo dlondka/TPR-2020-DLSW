@@ -34,145 +34,157 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void AddBookTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Book book = new Book("Bk name", "Bk author", 2010);
+			dataRepository.AddBook(book);
+			Assert.AreEqual(dataRepository.FindBook(book), dataRepository.GetAllBooks().Count());
+			Assert.IsTrue(dataRepository.GetAllBooks().Last().Equals(book));
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.AddBook(book));
 		}
 
 		[TestMethod()]
 		public void AddBookDetailsTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			dataRepository.AddBookDetails(bookDetails);
+			Assert.AreEqual(dataRepository.GetAllBooksDetails().Count(), 6);
+			Assert.AreEqual(dataRepository.GetBookDetails(5), bookDetails);
+			Assert.AreNotEqual(dataRepository.GetBookDetails(2), bookDetails);
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.AddBookDetails(bookDetails));
 		}
 
 		[TestMethod()]
 		public void AddClientTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void AddPurchaseTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void DeleteBookTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void DeleteBookDetailsTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void DeleteClientTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void DeletePurchaseTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void FindBookTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void FindBookDetailsTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void FindClientTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void FindPurchaseTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void GetAllBooksTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void GetAllBooksDetailsTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void GetAllClientsTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void GetAllPurchasesTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void GetBookTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void GetBookDetailsTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void GetClientTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void GetPurchaseTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void UpdateBookTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void UpdateBookDetailsTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void UpdateClientTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 
 		[TestMethod()]
 		public void UpdatePurchaseTest()
 		{
-
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 		}
 	}
 }
