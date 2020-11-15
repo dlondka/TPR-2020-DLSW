@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace BookstoreLibrary
 {
-	class DataService : IDataService
+	public class DataService : IDataService
 	{
 		IDataRepository DataRepository;
 
@@ -55,12 +55,12 @@ namespace BookstoreLibrary
 
 		public void DeleteClient(Client client)
 		{
-			throw new NotImplementedException();
+			DataRepository.DeleteClient(client);
 		}
 
 		public void DeletePurchase(Purchase purchase)
 		{
-			throw new NotImplementedException();
+			DataRepository.DeletePurchase(purchase);
 		}
 
 		public IEnumerable<BookDetails> GetAllBookDetails()
