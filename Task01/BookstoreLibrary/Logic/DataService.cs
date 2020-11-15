@@ -1,0 +1,7 @@
+﻿namespace BookstoreLibrary
+{
+	class DataService
+	{
+
+	}
+}
