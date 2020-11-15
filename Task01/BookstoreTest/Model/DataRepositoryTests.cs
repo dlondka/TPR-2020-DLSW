@@ -312,5 +312,17 @@ namespace BookstoreLibrary.Tests
 			dataRepository.UpdatePurchase(purchase, 3);
 			Assert.AreEqual(dataRepository.GetPurchase(3), purchase);
 		}
+
+		[TestMethod()]
+		public void GetBookCountTest()
+		{
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			dataRepository.AddBook(book);
+			dataRepository.AddBookDetails(bookDetails);
+
+			Assert.AreEqual(33, dataRepository.GetBookCount(book));
+		}
 	}
 }
