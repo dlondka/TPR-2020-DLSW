@@ -2,7 +2,7 @@
 
 namespace BookstoreLibrary
 {
-	class RandomDataFiller : IDataFiller
+	public class RandomDataFiller : IDataFiller
 	{
 		private readonly string[] FirstNames = { "Ellie", "Luis", "Rachel", "Jud", "Gage" };
 		private readonly string[] LastNames = { "Doe", "Snow", "Sanchez", "Smith", "Butler" };
