@@ -30,7 +30,7 @@ namespace BookstoreLibrary
 
 		public void BuyBook(Client client, BookDetails bookDetails)
 		{
-			if (!(bookDetails.Count > 0))
+			if (DataRepository.GetBookCount(bookDetails.Book) > 0)
 			{
 				throw new ArgumentException("There is no such book available");
 			}
@@ -83,6 +83,21 @@ namespace BookstoreLibrary
 			return DataRepository.GetAllPurchases();
 		}
 
+		public Book GetBook(int key)
+		{
+			return DataRepository.GetBook(key);
+		}
+
+		public BookDetails GetBookDetails(int index)
+		{
+			return DataRepository.GetBookDetails(index);
+		}
+
+		public Client GetClient(int index)
+		{
+			return DataRepository.GetClient(index);
+		}
+
 		public int GetNumberOfBooks(Book book)
 		{
 			return DataRepository.GetBookCount(book);
@@ -91,6 +106,11 @@ namespace BookstoreLibrary
 		public int GetNumberOfBooks(int key)
 		{
 			return DataRepository.GetBookCount(DataRepository.GetBook(key));
+		}
+
+		public Purchase GetPurchase(int index)
+		{
+			return DataRepository.GetPurchase(index);
 		}
 
 		public IEnumerable<Purchase> GetPurchasesBetween(DateTime firstDate, DateTime secondDate)

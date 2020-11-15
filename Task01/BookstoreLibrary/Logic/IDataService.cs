@@ -24,6 +24,10 @@ namespace BookstoreLibrary
 		void DeleteBook(int key);
 		void DeleteBookDetails(BookDetails bookDetails);
 		void DeletePurchase(Purchase purchase);
-		
+
+		Client GetClient(int index);
+		Book GetBook(int key);
+		BookDetails GetBookDetails(int index);
+		Purchase GetPurchase(int index);
 	}
 }

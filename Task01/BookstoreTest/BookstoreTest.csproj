@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Logic\DataServiceTests.cs" />
     <Compile Include="Model\DataFillers\ConstantDataFillerTests.cs" />
     <Compile Include="Model\DataFillers\FileDataFillerTests.cs" />
     <Compile Include="Model\DataFillers\RandomDataFillerTests.cs" />
