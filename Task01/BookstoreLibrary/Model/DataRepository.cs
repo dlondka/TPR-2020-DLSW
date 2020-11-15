@@ -20,7 +20,7 @@ namespace BookstoreLibrary
 		{
 			DataFiller = dataFiller;
 			DataFiller.Fill(DataContext);
-			BookKey = DataContext.Books.Count + 1;
+			BookKey = DataContext.Books.Count;
 		}
 
 		public void AddBook(Book book)

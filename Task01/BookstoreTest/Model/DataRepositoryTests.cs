@@ -37,7 +37,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			Book book = new Book("Bk name", "Bk author", 2010);
 			dataRepository.AddBook(book);
-			Assert.AreEqual(dataRepository.FindBook(book), dataRepository.GetAllBooks().Count());
+			Assert.AreEqual(5, dataRepository.FindBook(book));
 			Assert.IsTrue(dataRepository.GetAllBooks().Last().Equals(book));
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.AddBook(book));
 		}
@@ -138,56 +138,79 @@ namespace BookstoreLibrary.Tests
 		public void FindBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.FindBook(book));
+			dataRepository.AddBook(book);
+			Assert.AreEqual(5, dataRepository.FindBook(book));
 		}
 
 		[TestMethod()]
 		public void FindBookDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.FindBookDetails(bookDetails));
+			dataRepository.AddBookDetails(bookDetails);
+			Assert.AreEqual(5, dataRepository.FindBookDetails(bookDetails));
 		}
 
 		[TestMethod()]
 		public void FindClientTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.FindClient(client));
+			dataRepository.AddClient(client);
+			Assert.AreEqual(5, dataRepository.FindClient(client));
 		}
 
 		[TestMethod()]
 		public void FindPurchaseTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
+			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.FindPurchase(purchase));
+			dataRepository.AddPurchase(purchase);
+			Assert.AreEqual(5, dataRepository.FindPurchase(purchase));
 		}
 
 		[TestMethod()]
 		public void GetAllBooksTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Assert.AreEqual(5, dataRepository.GetAllBooks().Count());
+			Assert.IsInstanceOfType(dataRepository.GetAllBooks(), typeof(IEnumerable<Book>));
 		}
 
 		[TestMethod()]
 		public void GetAllBooksDetailsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Assert.AreEqual(5, dataRepository.GetAllBooksDetails().Count());
+			Assert.IsInstanceOfType(dataRepository.GetAllBooksDetails(), typeof(IEnumerable<BookDetails>));
 		}
 
 		[TestMethod()]
 		public void GetAllClientsTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Assert.AreEqual(5, dataRepository.GetAllClients().Count());
+			Assert.IsInstanceOfType(dataRepository.GetAllClients(), typeof(IEnumerable<Client>));
 		}
 
 		[TestMethod()]
 		public void GetAllPurchasesTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.ThrowsException<ArgumentException>(() => dataRepository);
+			Assert.AreEqual(5, dataRepository.GetAllPurchases().Count());
+			Assert.IsInstanceOfType(dataRepository.GetAllPurchases(), typeof(IEnumerable<Purchase>));
 		}
 
 		[TestMethod()]
