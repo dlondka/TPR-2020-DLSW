@@ -1,0 +1,25 @@
+﻿Client+Annie+A.+11111111111+111111123
+Client+Blitzcrank+B.+22222222222+222222123
+Client+Cassiopeia+C.+33333333333+333333123
+Client+Darius+D.+44444444444+444444123
+Client+Elise+E.+55555555555+555555123
+
+
+Book+Something Fishy+Wodehouse+1957
+Book+Pet Sematary+King+1983
+Book+Harry Potter and the Half-Blook Prince+Rowling+2005
+Book+Marley & Me+Grogan+2005
+Book+Feast+Masterton+1988
+
+
+BookDetails+12,99+0,05+12+Something Fishy is a novel by P. G. Wodehouse, first published in the United Kingdom on 18 January 1957 by Herbert Jenkins, London and in the United States on 28 January 1957 by Simon & Schuster, Inc., New York, under the title The Butler Did It.
+BookDetails+32,99+0,05+18+Pet Sematary is a 1983 horror novel by American writer Stephen King. The novel was nominated for a World Fantasy Award for Best Novel in 1986, and adapted into two films: one in 1989 and another in 2019. In November 2013, PS Publishing released Pet Sematary in a limited 30th-anniversary edition.
+BookDetails+25,99+0,05+54+Harry Potter and the Half-Blood Prince is a fantasy novel written by British author J.K. Rowling and the sixth and penultimate novel in the Harry Potter series.
+BookDetails+15,99+0,05+35+Marley & Me: Life and Love with the World's Worst Dog is an autobiographical book by journalist John Grogan, published in 2005, about the 13 years he and his family spent with their yellow Labrador Retriever, Marley.
+BookDetails+30,99+0,05+23+The little town of Allen's Corner in rural Connecticut hid a secret. A terrible, unimaginable secret. A secret that only the children knew. It fed on their youth, ate away at their innocence, and consumed their very souls with a twisted hunger that could never be revealed - nor ever satisfied.
+
+Purchase+2015-1-2T14:21:15
+Purchase+2016-2-3T15:22:16
+Purchase+2017-3-4T16:23:17
+Purchase+2018-4-5T17:24:18
+Purchase+2019-5-6T18:25:19
