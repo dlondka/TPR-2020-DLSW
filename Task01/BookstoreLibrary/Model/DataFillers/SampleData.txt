@@ -5,6 +5,13 @@ Client+Darius+D.+44444444444+444444123
 Client+Elise+E.+55555555555+555555123
 
 
+Publisher+Publisher1+111
+Publisher+Publisher2+222
+Publisher+Publisher3+333
+Publisher+Publisher4+444
+Publisher+Publisher5+555
+
+
 Book+Something Fishy+Wodehouse+1957
 Book+Pet Sematary+King+1983
 Book+Harry Potter and the Half-Blook Prince+Rowling+2005
@@ -17,7 +24,6 @@ BookDetails+32,99+0,05+18+Pet Sematary is a 1983 horror novel by American writer
 BookDetails+25,99+0,05+54+Harry Potter and the Half-Blood Prince is a fantasy novel written by British author J.K. Rowling and the sixth and penultimate novel in the Harry Potter series.
 BookDetails+15,99+0,05+35+Marley & Me: Life and Love with the World's Worst Dog is an autobiographical book by journalist John Grogan, published in 2005, about the 13 years he and his family spent with their yellow Labrador Retriever, Marley.
 BookDetails+30,99+0,05+23+The little town of Allen's Corner in rural Connecticut hid a secret. A terrible, unimaginable secret. A secret that only the children knew. It fed on their youth, ate away at their innocence, and consumed their very souls with a twisted hunger that could never be revealed - nor ever satisfied.
-
 
 BuyBook+2015-1-2T14:21:15+112
 BuyBook+2016-2-3T15:22:16+123

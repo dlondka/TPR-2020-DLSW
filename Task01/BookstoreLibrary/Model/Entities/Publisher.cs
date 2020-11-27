@@ -10,5 +10,10 @@
 			PublishersName = publishersName;
 			PhoneNumber = phoneNumber;
 		}
+
+		public override string ToString()
+		{
+			return $"Publisher: {PublishersName}, phone numer: {PhoneNumber}\n";
+		}
 	}
 }

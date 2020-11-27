@@ -49,7 +49,7 @@ namespace BookstoreLibrary.Model
 						}
 						else if (splitLine[0] == "SellBook")
 						{
-							dataContext.Purchases.Add(new SellBook(dataContext.Clients[purchaseCounter % 5], dataContext.BooksDetails[purchaseCounter], DateTime.Parse(splitLine[1]), Int32.Parse(splitLine[2])));
+							dataContext.Purchases.Add(new SellBook(dataContext.Clients[purchaseCounter % 5], dataContext.BooksDetails[purchaseCounter % 5], DateTime.Parse(splitLine[1]), Int32.Parse(splitLine[2])));
 							purchaseCounter++;
 						}
 					}
