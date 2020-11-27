@@ -51,6 +51,15 @@ namespace BookstoreLibrary
 			DataContext.Clients.Add(client);
 		}
 
+		public void AddPublisher(Publisher publisher)
+		{
+			if (DataContext.Publishers.Contains(publisher))
+			{
+				throw new ArgumentException("Publisher you are trying to add already exists");
+			}
+			DataContext.Publishers.Add(publisher);
+		}
+
 		public void AddPurchase(Purchase purchase)
 		{
 			if (DataContext.Purchases.Contains(purchase))
@@ -94,6 +103,15 @@ namespace BookstoreLibrary
 			DataContext.Clients.Remove(client);
 		}
 
+		public void DeletePublisher(Publisher publisher)
+		{
+			if (!DataContext.Publishers.Contains(publisher))
+			{
+				throw new ArgumentException("Publisher you are trying to remove does not exist");
+			}
+			DataContext.Publishers.Remove(publisher);
+		}
+
 		public void DeletePurchase(Purchase purchase)
 		{
 			if (!DataContext.Purchases.Contains(purchase))
@@ -130,6 +148,15 @@ namespace BookstoreLibrary
 			return DataContext.Clients.IndexOf(client);
 		}
 
+		public int FindPublisher(Publisher publisher)
+		{
+			if (!DataContext.Publishers.Contains(publisher))
+			{
+				throw new ArgumentException("Publisher you are trying to find does not exist");
+			}
+			return DataContext.Publishers.IndexOf(publisher);
+		}
+
 		public int FindPurchase(Purchase purchase)
 		{
 			if (!DataContext.Purchases.Contains(purchase))
@@ -152,6 +179,11 @@ namespace BookstoreLibrary
 		public IEnumerable<Client> GetAllClients()
 		{
 			return DataContext.Clients;
+		}
+
+		public IEnumerable<Publisher> GetAllPublishers()
+		{
+			return DataContext.Publishers;
 		}
 
 		public IEnumerable<Purchase> GetAllPurchases()
@@ -184,6 +216,15 @@ namespace BookstoreLibrary
 				throw new ArgumentException("Client you are trying to get does not exist");
 			}
 			return DataContext.Clients[index];
+		}
+
+		public Publisher GetPublisher(int index)
+		{
+			if (!(index < DataContext.Publishers.Count() && index >= 0))
+			{
+				throw new ArgumentException("The publisher you are trying to get does not exist");
+			}
+			return DataContext.Publishers[index];
 		}
 
 		public Purchase GetPurchase(int index)
@@ -220,6 +261,15 @@ namespace BookstoreLibrary
 				throw new ArgumentException("The client ");
 			}
 			DataContext.Clients[index] = client;
+		}
+
+		public void UpdatePublisher(Publisher publisher, int index)
+		{
+			if (!(index <= DataContext.Publishers.Count() && index >= 0))
+			{
+				throw new ArgumentException("Publisher with index you tried to update does not exist");
+			}
+			DataContext.Publishers[index] = publisher;
 		}
 
 		public void UpdatePurchase(Purchase purchase, int index)

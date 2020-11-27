@@ -28,14 +28,19 @@ namespace BookstoreLibrary
 			DataRepository.AddClient(client);
 		}
 
-		public void BuyBook(Client client, BookDetails bookDetails)
+		public void AddPublisher(Publisher publisher)
 		{
-			if (!(DataRepository.GetBookCount(bookDetails.Book) > 0))
-			{
-				throw new ArgumentException("There is no such book available");
-			}
-			bookDetails.Count--;
-			DataRepository.AddPurchase(new Purchase(client, new DateTime(), bookDetails));
+			DataRepository.AddPublisher(publisher);
+		}
+
+		public void BuyBook(Publisher publisher, BookDetails bookDetails, int numberOfBooks)
+		{
+			DataRepository.AddPurchase(new BuyBook(publisher, bookDetails, new DateTime(), numberOfBooks));
+		}
+
+		public void SellBook(Client client, BookDetails bookDetails, int numberOfBooks)
+		{
+			DataRepository.AddPurchase(new SellBook(client, bookDetails, new DateTime(), numberOfBooks));
 		}
 
 		public void DeleteBook(Book book)
@@ -58,6 +63,11 @@ namespace BookstoreLibrary
 			DataRepository.DeleteClient(client);
 		}
 
+		public void DeletePublisher(Publisher publisher)
+		{
+			DataRepository.DeletePublisher(publisher);
+		}
+
 		public void DeletePurchase(Purchase purchase)
 		{
 			DataRepository.DeletePurchase(purchase);
@@ -76,6 +86,11 @@ namespace BookstoreLibrary
 		public IEnumerable<Client> GetAllClients()
 		{
 			return DataRepository.GetAllClients();
+		}
+
+		public IEnumerable<Publisher> GetAllPublishers()
+		{
+			return DataRepository.GetAllPublishers();
 		}
 
 		public IEnumerable<Purchase> GetAllPurchases()
@@ -108,6 +123,11 @@ namespace BookstoreLibrary
 			return DataRepository.GetBookCount(DataRepository.GetBook(key));
 		}
 
+		public Publisher GetPublisher(int index)
+		{
+			return DataRepository.GetPublisher(index);
+		}
+
 		public Purchase GetPurchase(int index)
 		{
 			return DataRepository.GetPurchase(index);
@@ -125,7 +145,12 @@ namespace BookstoreLibrary
 
 		public IEnumerable<Purchase> GetPurchasesForClient(Client client)
 		{
-			return DataRepository.GetAllPurchases().Where(p => p.Client.Equals(client));
+			return DataRepository.GetAllPurchases().Where(p => typeof(SellBook).IsInstanceOfType(p) && ((SellBook)p).Client.Equals(client));
+		}
+
+		public IEnumerable<Purchase> GetPurchasesForPublisher(Publisher publisher)
+		{
+			return DataRepository.GetAllPurchases().Where(p => typeof(BuyBook).IsInstanceOfType(p) && ((BuyBook)p).Publisher.Equals(publisher));
 		}
 	}
 }

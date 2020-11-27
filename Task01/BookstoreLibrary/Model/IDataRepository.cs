@@ -11,6 +11,14 @@ namespace BookstoreLibrary
         void DeleteBook(int key);
         IEnumerable<Book> GetAllBooks();
 
+
+        void AddPublisher(Publisher publisher);
+        Publisher GetPublisher(int index);
+        int FindPublisher(Publisher publisher);
+        void UpdatePublisher(Publisher publisher, int index);
+        void DeletePublisher(Publisher publisher);
+        IEnumerable<Publisher> GetAllPublishers();
+
         void AddClient(Client client);
         Client GetClient(int index);
         int FindClient(Client client);
