@@ -1,12 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BookstoreLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BookstoreLibrary.Model;
+using BookstoreLibrary.Logic;
 
-namespace BookstoreLibrary.Tests
+namespace BookstoreLibrary.Logic.Tests
 {
 	[TestClass()]
 	public class DataServiceTests
@@ -49,7 +48,7 @@ namespace BookstoreLibrary.Tests
 		}
 
 		[TestMethod()]
-		public void BuyBookTest()
+		public void SellBookTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
@@ -60,10 +59,9 @@ namespace BookstoreLibrary.Tests
 			dataService.AddBookDetails(bookDetails);
 
 			Assert.AreEqual(dataService.GetNumberOfBooks(book), 33);
-			dataService.BuyBook(client, bookDetails);
-			Assert.AreEqual(dataService.GetNumberOfBooks(book), 32);
+			dataService.SellBook(client, bookDetails, 10);
+			Assert.AreEqual(dataService.GetNumberOfBooks(book), 23);
 			Assert.IsTrue(dataService.GetPurchasesForClient(client).First().BookDetails.Equals(bookDetails));
-			Assert.IsTrue(dataService.GetPurchasesForClient(client).First().Client.Equals(client));
 		}
 
 		[TestMethod()]
@@ -117,9 +115,9 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			Assert.AreEqual(5, dataService.GetAllPurchases().Count());
+			Assert.AreEqual(10, dataService.GetAllPurchases().Count());
 			dataService.DeletePurchase(dataService.GetPurchase(0));
-			Assert.AreEqual(4, dataService.GetAllPurchases().Count());
+			Assert.AreEqual(9, dataService.GetAllPurchases().Count());
 		}
 
 		[TestMethod()]
@@ -158,7 +156,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			Assert.AreEqual(5, dataService.GetAllPurchases().Count());
+			Assert.AreEqual(10, dataService.GetAllPurchases().Count());
 			Assert.IsInstanceOfType(dataService.GetAllPurchases(), typeof(IEnumerable<Purchase>));
 		}
 
@@ -200,9 +198,6 @@ namespace BookstoreLibrary.Tests
 				}
 
 			}
-
-
-			//throw new NotImplementedException();
 		}
 
 		[TestMethod()]
@@ -211,7 +206,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(0) }, dataService.GetPurchasesForBook(dataService.GetBook(0)).ToList());
+			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(0), dataService.GetPurchase(5) }, dataService.GetPurchasesForBook(dataService.GetBook(0)).ToList());
 		}
 
 		[TestMethod()]
@@ -220,7 +215,7 @@ namespace BookstoreLibrary.Tests
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			DataService dataService = new DataService(dataRepository);
 
-			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(0) }, dataService.GetPurchasesForClient(dataService.GetClient(0)).ToList());
+			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(5) }, dataService.GetPurchasesForClient(dataService.GetClient(0)).ToList());
 		}
 
 		[TestMethod()]
@@ -258,6 +253,73 @@ namespace BookstoreLibrary.Tests
 			DataService dataService = new DataService(dataRepository);
 
 			Assert.AreEqual(dataService.GetAllPurchases().First(), dataService.GetPurchase(0));
+		}
+
+		[TestMethod()]
+		public void AddPublisherTest()
+		{
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			DataService dataService = new DataService(dataRepository);
+			Publisher publisher = new Publisher("Name", "2115");
+
+			Assert.AreEqual(dataService.GetAllPublishers().Count(), 5);
+			dataService.AddPublisher(publisher);
+			Assert.AreEqual(dataService.GetAllPublishers().Count(), 6);
+		}
+
+		[TestMethod()]
+		public void BuyBookTest()
+		{
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			DataService dataService = new DataService(dataRepository);
+			Book book = new Book("Bk name", "Bk author", 2010);
+			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
+			Publisher publisher = new Publisher("Name", "2115");
+			dataService.AddBook(book);
+			dataService.AddBookDetails(bookDetails);
+
+			Assert.AreEqual(dataService.GetNumberOfBooks(book), 33);
+			dataService.BuyBook(publisher, bookDetails, 25);
+			Assert.AreEqual(dataService.GetNumberOfBooks(book), 58);
+		}
+
+		[TestMethod()]
+		public void DeletePublisherTest()
+		{
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			DataService dataService = new DataService(dataRepository);
+
+			Assert.AreEqual(5, dataService.GetAllPublishers().Count());
+			dataService.DeletePublisher(dataService.GetPublisher(0));
+			Assert.AreEqual(4, dataService.GetAllPublishers().Count());
+		}
+
+		[TestMethod()]
+		public void GetAllPublishersTest()
+		{
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			DataService dataService = new DataService(dataRepository);
+
+			Assert.AreEqual(5, dataService.GetAllPublishers().Count());
+			Assert.IsInstanceOfType(dataService.GetAllPublishers(), typeof(IEnumerable<Publisher>));
+		}
+
+		[TestMethod()]
+		public void GetPublisherTest()
+		{
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			DataService dataService = new DataService(dataRepository);
+
+			Assert.AreEqual(dataService.GetAllPublishers().First(), dataService.GetPublisher(0));
+		}
+
+		[TestMethod()]
+		public void GetPurchasesForPublisherTest()
+		{
+			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			DataService dataService = new DataService(dataRepository);
+
+			CollectionAssert.AreEqual(new List<Purchase> { dataService.GetPurchase(0) }, dataService.GetPurchasesForPublisher(dataService.GetPublisher(0)).ToList());
 		}
 	}
 }

@@ -55,9 +55,11 @@
     <Compile Include="Model\DataFillers\RandomDataFillerTests.cs" />
     <Compile Include="Model\DataRepositoryTests.cs" />
     <Compile Include="Model\Entities\BookDetailsTests.cs" />
+    <Compile Include="Model\Entities\BuyBookTests.cs" />
     <Compile Include="Model\Entities\ClientTests.cs" />
     <Compile Include="Model\Entities\BookTests.cs" />
-    <Compile Include="Model\Entities\PurchaseTests.cs" />
+    <Compile Include="Model\Entities\PublisherTests.cs" />
+    <Compile Include="Model\Entities\SellBookTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

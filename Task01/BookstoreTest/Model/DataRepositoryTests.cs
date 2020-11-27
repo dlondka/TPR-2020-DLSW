@@ -1,10 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BookstoreLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BookstoreLibrary.Model;
 
 namespace BookstoreLibrary.Tests
 {
@@ -26,7 +24,8 @@ namespace BookstoreLibrary.Tests
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
 			Assert.AreEqual(dataRepository.GetAllBooks().Count(), 5);
-			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 5);
+			Assert.AreEqual(dataRepository.GetAllPublishers().Count(), 5);
+			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 10);
 			Assert.AreEqual(dataRepository.GetAllBooksDetails().Count(), 5);
 			Assert.AreEqual(dataRepository.GetAllClients().Count(), 5);
 		}
@@ -72,11 +71,11 @@ namespace BookstoreLibrary.Tests
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
-			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+			Purchase purchase = new SellBook(client, bookDetails, new DateTime(), 1);
 			dataRepository.AddPurchase(purchase);
 
-			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 6);
-			Assert.AreEqual(dataRepository.GetPurchase(5), purchase);
+			Assert.AreEqual(11, dataRepository.GetAllPurchases().Count());
+			Assert.AreEqual(dataRepository.GetPurchase(10), purchase);
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.AddPurchase(purchase));
 		}
 
@@ -125,13 +124,13 @@ namespace BookstoreLibrary.Tests
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
-			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+			Purchase purchase = new SellBook(client, bookDetails, new DateTime(), 1);
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeletePurchase(purchase));
 			dataRepository.AddPurchase(purchase);
-			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 6);
+			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 11);
 			dataRepository.DeletePurchase(purchase);
-			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 5);
+			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 10);
 		}
 
 		[TestMethod()]
@@ -174,11 +173,11 @@ namespace BookstoreLibrary.Tests
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
-			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+			Purchase purchase = new SellBook(client, bookDetails, new DateTime(), 1);
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.FindPurchase(purchase));
 			dataRepository.AddPurchase(purchase);
-			Assert.AreEqual(5, dataRepository.FindPurchase(purchase));
+			Assert.AreEqual(10, dataRepository.FindPurchase(purchase));
 		}
 
 		[TestMethod()]
@@ -209,7 +208,7 @@ namespace BookstoreLibrary.Tests
 		public void GetAllPurchasesTest()
 		{
 			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
-			Assert.AreEqual(5, dataRepository.GetAllPurchases().Count());
+			Assert.AreEqual(10, dataRepository.GetAllPurchases().Count());
 			Assert.IsInstanceOfType(dataRepository.GetAllPurchases(), typeof(IEnumerable<Purchase>));
 		}
 
@@ -254,11 +253,11 @@ namespace BookstoreLibrary.Tests
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
-			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+			Purchase purchase = new SellBook(client, bookDetails, new DateTime(), 1);
 
-			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetPurchase(5));
+			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetPurchase(123));
 			dataRepository.AddPurchase(purchase);
-			Assert.AreEqual(dataRepository.GetPurchase(5), purchase);
+			Assert.AreEqual(dataRepository.GetPurchase(10), purchase);
 		}
 
 		[TestMethod()]
@@ -305,7 +304,7 @@ namespace BookstoreLibrary.Tests
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
-			Purchase purchase = new Purchase(client, new DateTime(), bookDetails);
+			Purchase purchase = new SellBook(client, bookDetails, new DateTime(), 1);
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.UpdatePurchase(purchase, 33));
 			Assert.AreNotEqual(dataRepository.GetPurchase(3), purchase);
