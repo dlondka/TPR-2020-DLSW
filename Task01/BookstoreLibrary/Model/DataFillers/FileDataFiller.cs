@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace BookstoreLibrary
+namespace BookstoreLibrary.Model
 {
 	public class FileDataFiller : IDataFiller
 	{

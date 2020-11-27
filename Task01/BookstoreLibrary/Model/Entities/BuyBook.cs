@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BookstoreLibrary
+namespace BookstoreLibrary.Model
 {
 	public class BuyBook : Purchase
 	{

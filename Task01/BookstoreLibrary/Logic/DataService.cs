@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BookstoreLibrary
+namespace BookstoreLibrary.Logic
 {
 	public class DataService : IDataService
 	{

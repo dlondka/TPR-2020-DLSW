@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using BookstoreLibrary.Model;
 
-namespace BookstoreLibrary
+namespace BookstoreLibrary.Logic
 {
 	public interface IDataService
 	{

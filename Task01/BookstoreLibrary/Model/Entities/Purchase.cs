@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BookstoreLibrary
+namespace BookstoreLibrary.Model
 {
 	public abstract class Purchase
 	{
