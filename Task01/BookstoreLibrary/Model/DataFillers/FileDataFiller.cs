@@ -28,6 +28,10 @@ namespace BookstoreLibrary
 						{
 							dataContext.Clients.Add(new Client(splitLine[1], splitLine[2], splitLine[3], splitLine[4]));
 						}
+						else if (splitLine[0] == "Publisher")
+						{
+							dataContext.Publishers.Add(new Publisher(splitLine[1], splitLine[2]));
+						}
 						else if (splitLine[0] == "Book")
 						{
 							dataContext.Books.Add(key, new Book(splitLine[1], splitLine[2], Int32.Parse(splitLine[3])));
@@ -38,9 +42,14 @@ namespace BookstoreLibrary
 							dataContext.BooksDetails.Add(new BookDetails(dataContext.Books[bookDetailsCounter], Decimal.Parse(splitLine[1]), Decimal.Parse(splitLine[2]), Int32.Parse(splitLine[3]), splitLine[4]));
 							bookDetailsCounter++;
 						}
-						else if (splitLine[0] == "Purchase")
+						else if (splitLine[0] == "BuyBook")
 						{
-							dataContext.Purchases.Add(new Purchase(dataContext.Clients[purchaseCounter], DateTime.Parse(splitLine[1]), dataContext.BooksDetails[purchaseCounter]));
+							dataContext.Purchases.Add(new BuyBook(dataContext.Publishers[purchaseCounter % 5], dataContext.BooksDetails[purchaseCounter % 5], DateTime.Parse(splitLine[1]), Int32.Parse(splitLine[2])));
+							purchaseCounter++;
+						}
+						else if (splitLine[0] == "SellBook")
+						{
+							dataContext.Purchases.Add(new SellBook(dataContext.Clients[purchaseCounter % 5], dataContext.BooksDetails[purchaseCounter], DateTime.Parse(splitLine[1]), Int32.Parse(splitLine[2])));
 							purchaseCounter++;
 						}
 					}

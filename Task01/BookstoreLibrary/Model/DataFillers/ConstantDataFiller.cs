@@ -12,6 +12,12 @@ namespace BookstoreLibrary
 			dataContext.Clients.Add(new Client("Jud", "Smith", "21154442115", "444442115"));
 			dataContext.Clients.Add(new Client("Gage", "Butler", "21155552115", "555552115"));
 
+			dataContext.Publishers.Add(new Publisher("Publisher1", "111111111"));
+			dataContext.Publishers.Add(new Publisher("Publisher2", "222222222"));
+			dataContext.Publishers.Add(new Publisher("Publisher3", "333333333"));
+			dataContext.Publishers.Add(new Publisher("Publisher4", "444444444"));
+			dataContext.Publishers.Add(new Publisher("Publisher5", "555555555"));
+
 			dataContext.Books.Add(0, new Book("Something Fishy", "Wodehouse", 1957));
 			dataContext.Books.Add(1, new Book("Pet Sematary", "King", 1983));
 			dataContext.Books.Add(2, new Book("Harry Potter and the Half-Blook Prince", "Rowling", 2005));
@@ -24,11 +30,17 @@ namespace BookstoreLibrary
 			dataContext.BooksDetails.Add(new BookDetails(dataContext.Books[3], new decimal(15.99), new decimal(0.05), 35, "Marley & Me: Life and Love with the World's Worst Dog is an autobiographical book by journalist John Grogan, published in 2005, about the 13 years he and his family spent with their yellow Labrador Retriever, Marley."));
 			dataContext.BooksDetails.Add(new BookDetails(dataContext.Books[4], new decimal(30.99), new decimal(0.05), 23, "The little town of Allen's Corner in rural Connecticut hid a secret. A terrible, unimaginable secret. A secret that only the children knew. It fed on their youth, ate away at their innocence, and consumed their very souls with a twisted hunger that could never be revealed - nor ever satisfied."));
 
-			dataContext.Purchases.Add(new Purchase(dataContext.Clients[0], new DateTime(2015, 1, 2, 14, 21, 15), dataContext.BooksDetails[0]));
-			dataContext.Purchases.Add(new Purchase(dataContext.Clients[1], new DateTime(2016, 2, 3, 15, 22, 16), dataContext.BooksDetails[1]));
-			dataContext.Purchases.Add(new Purchase(dataContext.Clients[2], new DateTime(2017, 3, 4, 16, 23, 17), dataContext.BooksDetails[2]));
-			dataContext.Purchases.Add(new Purchase(dataContext.Clients[3], new DateTime(2018, 4, 5, 17, 24, 18), dataContext.BooksDetails[3]));
-			dataContext.Purchases.Add(new Purchase(dataContext.Clients[4], new DateTime(2019, 5, 6, 18, 25, 19), dataContext.BooksDetails[4]));
+			dataContext.Purchases.Add(new BuyBook(dataContext.Publishers[0], dataContext.BooksDetails[0], new DateTime(2015, 1, 2, 14, 21, 15), 112));
+			dataContext.Purchases.Add(new BuyBook(dataContext.Publishers[1], dataContext.BooksDetails[1], new DateTime(2016, 2, 3, 15, 22, 16), 113));
+			dataContext.Purchases.Add(new BuyBook(dataContext.Publishers[2], dataContext.BooksDetails[2], new DateTime(2017, 3, 4, 16, 23, 17), 114));
+			dataContext.Purchases.Add(new BuyBook(dataContext.Publishers[3], dataContext.BooksDetails[3], new DateTime(2018, 4, 5, 17, 24, 18), 115));
+			dataContext.Purchases.Add(new BuyBook(dataContext.Publishers[4], dataContext.BooksDetails[4], new DateTime(2019, 5, 6, 18, 25, 19), 116));
+
+			dataContext.Purchases.Add(new SellBook(dataContext.Clients[0], dataContext.BooksDetails[0], new DateTime(2015, 1, 2, 14, 21, 15), 10));
+			dataContext.Purchases.Add(new SellBook(dataContext.Clients[1], dataContext.BooksDetails[1], new DateTime(2016, 2, 3, 15, 22, 16), 11));
+			dataContext.Purchases.Add(new SellBook(dataContext.Clients[2], dataContext.BooksDetails[2], new DateTime(2017, 3, 4, 16, 23, 17), 12));
+			dataContext.Purchases.Add(new SellBook(dataContext.Clients[3], dataContext.BooksDetails[3], new DateTime(2018, 4, 5, 17, 24, 18), 13));
+			dataContext.Purchases.Add(new SellBook(dataContext.Clients[4], dataContext.BooksDetails[4], new DateTime(2019, 5, 6, 18, 25, 19), 14));
 		}
 	}
 }
