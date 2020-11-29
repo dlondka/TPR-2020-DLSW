@@ -7,9 +7,9 @@ namespace BookstoreLibrary.Logic
 {
 	public class DataService : IDataService
 	{
-		IDataRepository DataRepository;
+		private IDataRepository DataRepository;
 
-		public DataService(DataRepository dataRepository)
+		public DataService(IDataRepository dataRepository)
 		{
 			DataRepository = dataRepository;
 		}
