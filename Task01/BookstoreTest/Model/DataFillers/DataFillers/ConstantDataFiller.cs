@@ -4,7 +4,7 @@ namespace BookstoreLibrary.Model
 {
 	public class ConstantDataFiller : IDataFiller
 	{
-		public void Fill(DataContext dataContext)
+		public DataContext Fill(DataContext dataContext)
 		{
 			dataContext.Clients.Add(new Client("Ellie", "Doe", "21151112115", "111112115"));
 			dataContext.Clients.Add(new Client("Luis", "Snow", "21152222115", "222222115"));
@@ -41,6 +41,8 @@ namespace BookstoreLibrary.Model
 			dataContext.Purchases.Add(new SellBook(dataContext.Clients[2], dataContext.BooksDetails[2], new DateTime(2017, 3, 4, 16, 23, 17), 12));
 			dataContext.Purchases.Add(new SellBook(dataContext.Clients[3], dataContext.BooksDetails[3], new DateTime(2018, 4, 5, 17, 24, 18), 13));
 			dataContext.Purchases.Add(new SellBook(dataContext.Clients[4], dataContext.BooksDetails[4], new DateTime(2019, 5, 6, 18, 25, 19), 14));
+
+			return dataContext;
 		}
 	}
 }

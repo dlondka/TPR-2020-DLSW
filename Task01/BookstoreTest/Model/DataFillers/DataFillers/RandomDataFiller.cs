@@ -4,6 +4,7 @@ namespace BookstoreLibrary.Model
 {
 	public class RandomDataFiller : IDataFiller
 	{
+
 		private readonly string[] FirstNames = { "Ellie", "Luis", "Rachel", "Jud", "Gage" };
 		private readonly string[] LastNames = { "Doe", "Snow", "Sanchez", "Smith", "Butler" };
 		private readonly string[] PESELs = { "21151112115", "21152222115", "21153332115", "21154442115", "21155552115" };
@@ -18,7 +19,7 @@ namespace BookstoreLibrary.Model
 		private readonly DateTime[] DateTimes = { new DateTime(2015, 1, 2, 14, 21, 15), new DateTime(2016, 2, 3, 15, 22, 16), new DateTime(2017, 3, 4, 16, 23, 17), new DateTime(2018, 4, 5, 17, 24, 18), new DateTime(2019, 5, 6, 18, 25, 19) };
 		Random Random = new Random();
 
-		public void Fill(DataContext dataContext)
+		public DataContext Fill(DataContext dataContext)
 		{
 			for (int i = 0; i < 5; i++)
 			{
@@ -30,6 +31,7 @@ namespace BookstoreLibrary.Model
 				dataContext.Purchases.Add(GenerateSellBooks(i, dataContext));
 			}
 
+			return dataContext;
 		}
 
 		private Client GenerateClient()

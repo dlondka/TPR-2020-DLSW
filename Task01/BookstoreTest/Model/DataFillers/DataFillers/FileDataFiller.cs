@@ -5,9 +5,11 @@ namespace BookstoreLibrary.Model
 {
 	public class FileDataFiller : IDataFiller
 	{
-		public void Fill(DataContext dataContext)
+		public DataContext Fill(DataContext dataContext)
 		{
 			ReadData(dataContext);
+
+			return dataContext;
 		}
 
 

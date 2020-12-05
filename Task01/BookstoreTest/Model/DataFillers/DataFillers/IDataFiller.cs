@@ -2,6 +2,6 @@
 {
 	public interface IDataFiller
 	{
-		void Fill(DataContext dataContext);
+		static DataContext Fill(DataContext dataContext);
 	}
 }
