@@ -49,8 +49,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logic\DataServiceTests.cs" />
     <Compile Include="Model\DataFillers\ConstantDataFillerTests.cs" />
+    <Compile Include="Model\DataFillers\DataFillers\ConstantDataFiller.cs" />
+    <Compile Include="Model\DataFillers\DataFillers\FileDataFiller.cs" />
+    <Compile Include="Model\DataFillers\DataFillers\IDataFiller.cs" />
+    <Compile Include="Model\DataFillers\DataFillers\RandomDataFiller.cs" />
     <Compile Include="Model\DataFillers\FileDataFillerTests.cs" />
     <Compile Include="Model\DataFillers\RandomDataFillerTests.cs" />
     <Compile Include="Model\DataRepositoryTests.cs" />
@@ -66,10 +69,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BookstoreLibrary\BookstoreLibrary.csproj">
-      <Project>{36B5F275-21BD-4EE1-89FC-A9F7BC05018E}</Project>
-      <Name>BookstoreLibrary</Name>
+    <ProjectReference Include="..\BookstoreModel\BookstoreModel.csproj">
+      <Project>{be86d014-c619-42d3-a4d7-593af311ebde}</Project>
+      <Name>BookstoreModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\DataFillers\DataFillers\SampleData.txt" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
