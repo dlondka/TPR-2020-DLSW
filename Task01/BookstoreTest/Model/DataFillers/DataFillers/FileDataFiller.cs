@@ -1,13 +1,15 @@
 ﻿using System;
 using System.IO;
+using BookstoreLibrary.Model;
 
-namespace BookstoreLibrary.Model
+namespace BookstoreLibrary.Filler
 {
 	public class FileDataFiller : IDataFiller
 	{
-		public void Fill(DataContext dataContext)
+		public DataContext Fill(DataContext dataContext)
 		{
 			ReadData(dataContext);
+			return dataContext;
 		}
 
 

@@ -1,7 +1,9 @@
-﻿namespace BookstoreLibrary.Model
+﻿using BookstoreLibrary.Model;
+
+namespace BookstoreLibrary.Filler
 {
 	public interface IDataFiller
 	{
-		void Fill(DataContext dataContext);
+		DataContext Fill(DataContext dataContext);
 	}
 }

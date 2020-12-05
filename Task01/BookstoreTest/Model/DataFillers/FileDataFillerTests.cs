@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using BookstoreLibrary.Model;
+using BookstoreLibrary.Filler;
 
 namespace BookstoreLibrary.Tests
 {
@@ -10,7 +11,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void FillTest()
 		{
-			DataRepository dataRepository = new DataRepository(new FileDataFiller());
+			FileDataFiller filler = new FileDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 
 			Assert.AreEqual(5, dataRepository.GetAllClients().Count());
 			Assert.AreEqual("Client: Annie A., PESEL: 11111111111, phone number: 111111123\n", dataRepository.GetClient(0).ToString());

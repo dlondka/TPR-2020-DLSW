@@ -1,6 +1,7 @@
 ﻿using System;
+using BookstoreLibrary.Model;
 
-namespace BookstoreLibrary.Model
+namespace BookstoreLibrary.Filler
 {
 	public class RandomDataFiller : IDataFiller
 	{
@@ -18,7 +19,7 @@ namespace BookstoreLibrary.Model
 		private readonly DateTime[] DateTimes = { new DateTime(2015, 1, 2, 14, 21, 15), new DateTime(2016, 2, 3, 15, 22, 16), new DateTime(2017, 3, 4, 16, 23, 17), new DateTime(2018, 4, 5, 17, 24, 18), new DateTime(2019, 5, 6, 18, 25, 19) };
 		Random Random = new Random();
 
-		public void Fill(DataContext dataContext)
+		public DataContext Fill(DataContext dataContext)
 		{
 			for (int i = 0; i < 5; i++)
 			{
@@ -29,7 +30,7 @@ namespace BookstoreLibrary.Model
 				dataContext.Purchases.Add(GenerateBuyBooks(i, dataContext));
 				dataContext.Purchases.Add(GenerateSellBooks(i, dataContext));
 			}
-
+			return dataContext;
 		}
 
 		private Client GenerateClient()
@@ -61,5 +62,5 @@ namespace BookstoreLibrary.Model
 		{
 			return new SellBook(dataContext.Clients[i], dataContext.BooksDetails[i], DateTimes[Random.Next(DateTimes.Length)], Random.Next(1, 20));
 		}
-	}
+    }
 }

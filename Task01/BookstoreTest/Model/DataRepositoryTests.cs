@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using BookstoreLibrary.Model;
+using BookstoreLibrary.Filler;
 
-namespace BookstoreLibrary.Tests
+namespace BookstoreLibrary.ModelTests
 {
 	[TestClass()]
 	public class DataRepositoryTests
@@ -12,7 +13,7 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void DataRepositoryTest1()
 		{
-			DataRepository dr1 = new DataRepository();
+			IDataRepository dr1 = new DataRepository();
 			Assert.AreEqual(dr1.GetAllBooks().Count(), 0);
 			Assert.AreEqual(dr1.GetAllPurchases().Count(), 0);
 			Assert.AreEqual(dr1.GetAllBooksDetails().Count(), 0);
@@ -22,7 +23,9 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void DataRepositoryTest2()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
+
 			Assert.AreEqual(dataRepository.GetAllBooks().Count(), 5);
 			Assert.AreEqual(dataRepository.GetAllPublishers().Count(), 5);
 			Assert.AreEqual(dataRepository.GetAllPurchases().Count(), 10);
@@ -33,7 +36,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void AddBookTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			dataRepository.AddBook(book);
 			Assert.AreEqual(5, dataRepository.FindBook(book));
@@ -44,7 +48,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void AddBookDetailsTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			dataRepository.AddBookDetails(bookDetails);
@@ -56,7 +61,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void AddClientTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
 			dataRepository.AddClient(client);
 			Assert.AreEqual(dataRepository.GetAllClients().Count(), 6);
@@ -67,7 +73,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void AddPurchaseTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
@@ -82,7 +89,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void DeleteBookTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeleteBook(dataRepository.FindBook(book)));
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeleteBook(123));
@@ -94,7 +102,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void DeleteBookDetailsTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeleteBookDetails(bookDetails));
@@ -107,7 +116,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void DeleteClientTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.DeleteClient(client));
@@ -120,7 +130,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void DeletePurchaseTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
@@ -136,7 +147,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void FindBookTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.FindBook(book));
 			dataRepository.AddBook(book);
@@ -146,7 +158,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void FindBookDetailsTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 
@@ -158,7 +171,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void FindClientTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.FindClient(client));
@@ -169,7 +183,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void FindPurchaseTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
@@ -183,7 +198,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetAllBooksTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Assert.AreEqual(5, dataRepository.GetAllBooks().Count());
 			Assert.IsInstanceOfType(dataRepository.GetAllBooks(), typeof(IEnumerable<Book>));
 		}
@@ -191,7 +207,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetAllBooksDetailsTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Assert.AreEqual(5, dataRepository.GetAllBooksDetails().Count());
 			Assert.IsInstanceOfType(dataRepository.GetAllBooksDetails(), typeof(IEnumerable<BookDetails>));
 		}
@@ -199,7 +216,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetAllClientsTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Assert.AreEqual(5, dataRepository.GetAllClients().Count());
 			Assert.IsInstanceOfType(dataRepository.GetAllClients(), typeof(IEnumerable<Client>));
 		}
@@ -207,7 +225,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetAllPurchasesTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Assert.AreEqual(10, dataRepository.GetAllPurchases().Count());
 			Assert.IsInstanceOfType(dataRepository.GetAllPurchases(), typeof(IEnumerable<Purchase>));
 		}
@@ -215,7 +234,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetBookTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetBook(5));
@@ -226,7 +246,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetBookDetailsTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 
@@ -238,7 +259,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetClientTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.GetClient(5));
@@ -249,7 +271,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetPurchaseTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
@@ -263,7 +286,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void UpdateBookTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.UpdateBook(20, book));
@@ -275,7 +299,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void UpdateBookDetailsTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 
@@ -288,7 +313,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void UpdateClientTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
 
 			Assert.ThrowsException<ArgumentException>(() => dataRepository.UpdateClient(client, 22));
@@ -300,7 +326,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void UpdatePurchaseTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			Client client = new Client("ClName", "ClLastName", "99101023432", "321654987");
@@ -315,7 +342,8 @@ namespace BookstoreLibrary.Tests
 		[TestMethod()]
 		public void GetBookCountTest()
 		{
-			DataRepository dataRepository = new DataRepository(new ConstantDataFiller());
+			ConstantDataFiller filler = new ConstantDataFiller();
+			IDataRepository dataRepository = new DataRepository(filler.Fill(new DataContext()));
 			Book book = new Book("Bk name", "Bk author", 2010);
 			BookDetails bookDetails = new BookDetails(book, new decimal(24.99), new decimal(0.05), 33, "Book that contains words");
 			dataRepository.AddBook(book);

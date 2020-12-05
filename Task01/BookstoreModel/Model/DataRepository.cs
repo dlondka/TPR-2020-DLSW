@@ -7,20 +7,19 @@ namespace BookstoreLibrary.Model
 	public class DataRepository : IDataRepository
 	{
 		private DataContext DataContext = new DataContext();
-		private readonly IDataFiller DataFiller;
+		private int BookKey = 0;
 
-		private int BookKey;
+		public DataRepository() {}
 
-		public DataRepository()
+		public DataRepository(DataContext dataContext)
         {
-			BookKey = 0;
-        }
+			DataContext = dataContext;
 
-		public DataRepository(IDataFiller dataFiller)
-		{
-			DataFiller = dataFiller;
-			DataFiller.Fill(DataContext);
-			BookKey = DataContext.Books.Last().Key + 1;
+			if (dataContext.Books.Count > 0)
+            {
+				BookKey = DataContext.Books.Last().Key + 1;
+			}
+
 		}
 
 		public void AddBook(Book book)

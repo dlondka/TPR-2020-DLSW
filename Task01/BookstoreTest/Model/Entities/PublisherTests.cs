@@ -1,13 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BookstoreLibrary.Filler;
 using BookstoreLibrary.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookstoreLibrary.Logic;
 
-namespace BookstoreLibrary.Model.Tests
+namespace BookstoreLibrary.ModelTests
 {
 	[TestClass()]
 	public class PublisherTests
@@ -15,10 +10,10 @@ namespace BookstoreLibrary.Model.Tests
 		[TestMethod()]
 		public void ToStringTest()
 		{
-			DataRepository repo = new DataRepository(new ConstantDataFiller());
-			DataService dataService = new DataService(repo);
+			ConstantDataFiller filler = new ConstantDataFiller();
+			DataRepository repository = new DataRepository(filler.Fill(new DataContext()));
 
-			Assert.AreEqual("Publisher: Publisher1, phone numer: 111111111\n", dataService.GetPublisher(0).ToString());
+			Assert.AreEqual("Publisher: Publisher1, phone numer: 111111111\n", repository.GetPublisher(0).ToString());
 		}
 	}
 }

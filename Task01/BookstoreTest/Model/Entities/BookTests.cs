@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BookstoreLibrary.Model;
 
-namespace BookstoreLibrary.Model.Entities.Tests
+namespace BookstoreLibrary.ModelTests
 {
     [TestClass()]
     public class BookTests

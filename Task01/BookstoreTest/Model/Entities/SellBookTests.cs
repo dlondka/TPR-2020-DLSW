@@ -1,8 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using BookstoreLibrary.Logic;
+using BookstoreLibrary.Filler;
+using BookstoreLibrary.Model;
 
-namespace BookstoreLibrary.Model.Tests
+namespace BookstoreLibrary.ModelTests
 {
 	[TestClass()]
 	public class SellBookTests
@@ -10,23 +11,23 @@ namespace BookstoreLibrary.Model.Tests
 		[TestMethod()]
 		public void SellBookTest()
 		{
-			DataRepository repo = new DataRepository(new ConstantDataFiller());
-			DataService dataService = new DataService(repo);
+			ConstantDataFiller filler = new ConstantDataFiller();
+			DataRepository repository = new DataRepository(filler.Fill(new DataContext()));
 
-			int numberOfBooksBeforePurchase = dataService.GetNumberOfBooks(dataService.GetBook(0));
-			new SellBook(dataService.GetClient(0), dataService.GetBookDetails(0), new DateTime(), 12);
-			Assert.AreEqual(numberOfBooksBeforePurchase - 12, dataService.GetBookDetails(0).Count);
+			int numberOfBooksBeforePurchase = repository.GetBookCount(repository.GetBook(0));
+			new SellBook(repository.GetClient(0), repository.GetBookDetails(0), new DateTime(), 12);
+			Assert.AreEqual(numberOfBooksBeforePurchase - 12, repository.GetBookDetails(0).Count);
 		}
 
 		[TestMethod()]
 		public void EqualsTest()
 		{
-			DataRepository repo = new DataRepository(new ConstantDataFiller());
-			DataService dataService = new DataService(repo);
+			ConstantDataFiller filler = new ConstantDataFiller();
+			DataRepository repository = new DataRepository(filler.Fill(new DataContext()));
 
-			SellBook sellBookA = new SellBook(dataService.GetClient(0), dataService.GetBookDetails(0), new DateTime(), 12);
-			SellBook sellBookB = new SellBook(dataService.GetClient(0), dataService.GetBookDetails(0), new DateTime(), 12);
-			SellBook sellBookC = new SellBook(dataService.GetClient(1), dataService.GetBookDetails(0), new DateTime(), 12);
+			SellBook sellBookA = new SellBook(repository.GetClient(0), repository.GetBookDetails(0), new DateTime(), 12);
+			SellBook sellBookB = new SellBook(repository.GetClient(0), repository.GetBookDetails(0), new DateTime(), 12);
+			SellBook sellBookC = new SellBook(repository.GetClient(1), repository.GetBookDetails(0), new DateTime(), 12);
 
 			Assert.AreEqual(sellBookA, sellBookB);
 			Assert.AreNotEqual(sellBookA, sellBookC);
@@ -35,11 +36,11 @@ namespace BookstoreLibrary.Model.Tests
 		[TestMethod()]
 		public void GetHashCodeTest()
 		{
-			DataRepository repo = new DataRepository(new ConstantDataFiller());
-			DataService dataService = new DataService(repo);
+			ConstantDataFiller filler = new ConstantDataFiller();
+			DataRepository repository = new DataRepository(filler.Fill(new DataContext()));
 
-			SellBook sellBookA = new SellBook(dataService.GetClient(0), dataService.GetBookDetails(0), new DateTime(), 12);
-			SellBook sellBookB = new SellBook(dataService.GetClient(0), dataService.GetBookDetails(0), new DateTime(), 12);
+			SellBook sellBookA = new SellBook(repository.GetClient(0), repository.GetBookDetails(0), new DateTime(), 12);
+			SellBook sellBookB = new SellBook(repository.GetClient(0), repository.GetBookDetails(0), new DateTime(), 12);
 
 			Assert.AreEqual(sellBookA.GetHashCode(), sellBookB.GetHashCode());
 		}
