@@ -20,7 +20,7 @@ namespace BookstoreLibrary.Filler
 			int purchaseCounter = 0;
 			try
 			{
-				using (StreamReader sr = new StreamReader(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\BookstoreLibrary\\Model\\DataFillers\\SampleData.txt"))
+				using (StreamReader sr = new StreamReader(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName + "\\BookstoreModelTest\\Model\\DataFillers\\DataFillers\\SampleData.txt"))
 				{
 					string singleLine;
 					while ((singleLine = sr.ReadLine()) != null)
