@@ -16,13 +16,13 @@ namespace Task02.Tests
             C.ExampleA = A;
 
             XmlSerializer xmlSerializer = new XmlSerializer();
-            xmlSerializer.Serialize("..\\..\\..\\XmlSerialization\\A.xml", A);
-            xmlSerializer.Serialize("..\\..\\..\\XmlSerialization\\B.xml", B);
-            xmlSerializer.Serialize("..\\..\\..\\XmlSerialization\\C.xml", C);
+            xmlSerializer.Serialize("..\\..\\..\\XmlSerialization\\Serialized\\A.xml", A);
+            xmlSerializer.Serialize("..\\..\\..\\XmlSerialization\\Serialized\\B.xml", B);
+            xmlSerializer.Serialize("..\\..\\..\\XmlSerialization\\Serialized\\C.xml", C);
 
-            A deserializedA = (A)xmlSerializer.Deserialize("A.xml", typeof(A));
-            B deserializedB = (B)xmlSerializer.Deserialize("B.xml", typeof(B));
-            C deserializedC = (C)xmlSerializer.Deserialize("C.xml", typeof(C));
+            A deserializedA = (A)xmlSerializer.Deserialize("..\\..\\..\\XmlSerialization\\Serialized\\A.xml", typeof(A));
+            B deserializedB = (B)xmlSerializer.Deserialize("..\\..\\..\\XmlSerialization\\Serialized\\B.xml", typeof(B));
+            C deserializedC = (C)xmlSerializer.Deserialize("..\\..\\..\\XmlSerialization\\Serialized\\C.xml", typeof(C));
 
             Assert.IsTrue(deserializedA.Equals(A));
             Assert.IsTrue(deserializedB.Equals(B));

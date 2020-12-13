@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<A xmlns:i="http://www.w3.org/2001/XMLSchema-instance" z:Id="i1" xmlns:z="http://schemas.microsoft.com/2003/10/Serialization/" xmlns="http://schemas.datacontract.org/2004/07/Task02">
+  <ClassName>Klasa A</ClassName>
+  <ExampleB z:Id="i2">
+    <ClassName>Klasa B</ClassName>
+    <ExampleC z:Id="i3">
+      <ClassName>Klasa C</ClassName>
+      <ExampleA z:Ref="i1" />
+      <ExampleBool>true</ExampleBool>
+    </ExampleC>
+    <ExampleInt>69</ExampleInt>
+  </ExampleB>
+  <ExampleDouble>21.37</ExampleDouble>
+</A>
