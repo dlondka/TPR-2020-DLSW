@@ -2,7 +2,7 @@
 
 namespace Task02
 {
-    class ClassC : ISerializable
+    public class ClassC : ISerializable
     {
         public string ClassName;
         public bool ExampleBool;

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Task02
 {
-	class AssemblyBinder : SerializationBinder
+	class Binder : SerializationBinder
 	{
 		public override Type BindToType(string assemblyName, string typeName)
 		{

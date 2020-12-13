@@ -2,7 +2,7 @@
 
 namespace Task02
 {
-    class ClassB : ISerializable
+    public class ClassB : ISerializable
     {
         public string ClassName;
         public int ExampleInt;

@@ -2,7 +2,7 @@
 
 namespace Task02
 {
-    class ClassA : ISerializable
+    public class ClassA : ISerializable
     {
         public string ClassName;
         public double ExampleDouble;
