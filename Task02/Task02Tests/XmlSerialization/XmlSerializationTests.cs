@@ -27,6 +27,8 @@ namespace Task02.Tests
             Assert.IsTrue(deserializedA.Equals(A));
             Assert.IsTrue(deserializedB.Equals(B));
             Assert.IsTrue(deserializedC.Equals(C));
+
+            Assert.AreSame(deserializedA, deserializedA.ExampleB.ExampleC.ExampleA);
         }
     }
 }
