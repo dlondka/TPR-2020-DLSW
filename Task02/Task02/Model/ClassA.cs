@@ -1,12 +1,13 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Task02
 {
     public class ClassA : ISerializable
     {
-        public string ClassName;
-        public double ExampleDouble;
-        public ClassB ExampleB;
+        public string ClassName { get; set; }
+        public double ExampleDouble { get; set; }
+        public ClassB ExampleB { get; set; }
 
         public ClassA(string className, double exampleDouble, ClassB exampleB)
         {
@@ -24,10 +25,18 @@ namespace Task02
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("ClassName", ClassName);
-            info.AddValue("ExampleDouble", ExampleDouble);
-            info.AddValue("ExampleB", ExampleB);
+            info.AddValue("ClassName", ClassName, typeof(string));
+            info.AddValue("ExampleDouble", ExampleDouble, typeof(double));
+            info.AddValue("ExampleB", ExampleB, typeof(ClassB));
         }
-    }
+
+		public override bool Equals(object obj)
+		{
+			return obj is ClassA a &&
+				   ClassName == a.ClassName &&
+				   ExampleDouble == a.ExampleDouble &&
+				   EqualityComparer<ClassB>.Default.Equals(ExampleB, a.ExampleB);
+		}
+	}
 
 }

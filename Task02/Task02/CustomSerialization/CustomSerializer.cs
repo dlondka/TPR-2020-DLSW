@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -22,68 +23,121 @@ namespace Task02
 
 		public override void Serialize(Stream serializationStream, object graph)
 		{
-			do
+			Binder.BindToName(graph.GetType(), out string assemblyName, out string typeName);
+			StringBuilder.Append(assemblyName + "||" + typeName + "||" + m_idGenerator.GetId(graph, out bool firstTime) + "\n");
+
+			ISerializable obj = (ISerializable)graph;
+			SerializationInfo serializationInfo = new SerializationInfo(graph.GetType(), new FormatterConverter());
+			StreamingContext context = new StreamingContext(StreamingContextStates.File);
+
+			obj.GetObjectData(serializationInfo, context);
+
+			foreach (SerializationEntry property in serializationInfo)
 			{
-				List<PropertyInfo> propertiesInfo = graph.GetType().GetProperties().ToList();
-				Binder.BindToName(graph.GetType(), out string assemblyName, out string typeName);
-				Console.WriteLine(assemblyName + "~~" + typeName + "~~");
-				StringBuilder.Append(assemblyName + "~~" + typeName + "~~" + m_idGenerator.GetId(graph, out _));
+				WriteMember(property.Name, property.Value);
+			}
 
-				foreach (PropertyInfo p in propertiesInfo)
-				{
-					WriteMember(p.Name, p.GetValue(graph));
-				}
+			while (m_objectQueue.Count != 0)
+			{
+				Serialize(null, m_objectQueue.Dequeue());
+			}
 
-				graph = m_objectQueue.Dequeue();
-			} while (!m_objectQueue.Count.Equals(0));
-
-
-			StringBuilder.Remove(StringBuilder.Length - 1, 1);
-			StreamWriter(serializationStream);
+			if (serializationStream != null)
+			{
+				StreamWriter(serializationStream);
+			}
 		}
 
 		public override object Deserialize(Stream serializationStream)
 		{
+			if (serializationStream == null)
+			{
+				return null;
+			}
+
+			Dictionary<int, object> deserializedObjects = new Dictionary<int, object>();
+			Dictionary<int, List<string>> propertiesOfTheObject = new Dictionary<int, List<string>>();
+
 			StreamReader(serializationStream);
-
-			object[] objectsArray = new object[DeserializedData.Count];
-			Dictionary<int, object> objectsWithIDs = new Dictionary<int, object>();
+			int id = 0;
 
 			for (int i = 0; i < DeserializedData.Count; i++)
 			{
-				string[] splitString = DeserializedData[i].Split("~~");
-
-				Type currentType = Binder.BindToType(splitString[0], splitString[1]);
-				int currentID = Convert.ToInt32(splitString[2]);
-				object currentObject = FormatterServices.GetUninitializedObject(currentType);
-				objectsArray[i] = currentObject;
-				objectsWithIDs.Add(currentID, currentObject);
-			}
-
-
-			for (int i = 0; i < DeserializedData.Count; i++)
-			{
-				string[] splitString = DeserializedData[i].Split("~~");
-
-				Type currentType = Binder.BindToType(splitString[0], splitString[1]);
-
-				List<PropertyInfo> propertiesInfo = currentType.GetProperties().ToList();
-				Type[] typesArray = new Type[propertiesInfo.Count];
-				object[] valuesOfTheParameters = new object[propertiesInfo.Count];
-				int ID = Convert.ToInt32(splitString[5].Split("||")[2]);
-
-				for (int j = 0; j < splitString.Length - 3; j++)
+				if (DeserializedData[i].Contains("Task02, ")) // if that's an object
 				{
-					string[] property = splitString[j + 3].Split("||");
-					Type type = propertiesInfo[j].PropertyType;
-					typesArray[j] = type;
+					string[] values = DeserializedData[i].Split("||");
+					Type type = Binder.BindToType(values[0], values[1]);
+					id = int.Parse(values[2]);
 
-					valuesOfTheParameters[j] = objectsArray.Any(obj => type == obj.GetType()) ? objectsWithIDs[ID] : Convert.ChangeType(property[2], type);
+					object uninitializedObject = FormatterServices.GetUninitializedObject(type);
+
+					deserializedObjects.Add(id, uninitializedObject);
 				}
-				currentType.GetConstructor(typesArray).Invoke(objectsArray[i], valuesOfTheParameters);
+				else // if that's a property
+				{
+					if (!propertiesOfTheObject.ContainsKey(id))
+					{
+						propertiesOfTheObject.Add(id, new List<string>());
+					}
+					propertiesOfTheObject[id].Add(DeserializedData[i]);
+				}
+			}
+
+			Dictionary<int, object> readyObjects = new Dictionary<int, object>();
+			Dictionary<int, List<int>> objIdRefId = new Dictionary<int, List<int>>();
+
+			foreach (KeyValuePair<int, object> obj in deserializedObjects)
+			{
+				Type currentType = obj.Value.GetType();
+				int currentId = obj.Key;
+
+				SerializationInfo serializationInfo = new SerializationInfo(currentType, new FormatterConverter());
+				StreamingContext context = new StreamingContext(StreamingContextStates.File);
+				List<int> localRefs = new List<int>();
+
+				foreach (string str in propertiesOfTheObject[obj.Key])
+				{
+					List<string> singleProperty = str.Split("||").ToList();
+					Type propertyType = Type.GetType(singleProperty[0]);
+					string propertyName = singleProperty[1];
+					string propertyValue = singleProperty[2];
+
+					if (singleProperty[0].Contains("Task02"))
+					{
+						serializationInfo.AddValue(propertyName, null);
+						localRefs.Add(int.Parse(propertyValue));
+					}
+					else
+					{
+						serializationInfo.AddValue(propertyName, Convert.ChangeType(propertyValue, propertyType), propertyType);
+					}
+				}
+
+				if (localRefs.Count > 0)
+				{
+					objIdRefId.Add(currentId, localRefs);
+				}
+
+				readyObjects.Add(currentId, Activator.CreateInstance(currentType, serializationInfo, context));
 
 			}
-			return objectsArray[0];
+
+			
+			foreach (int objectId in objIdRefId.Keys)
+			{
+				foreach (int refId in objIdRefId[objectId])
+				{
+					foreach (PropertyInfo p in readyObjects[objectId].GetType().GetProperties())
+					{
+						if (p.PropertyType == readyObjects[refId].GetType())
+						{
+							p.SetValue(readyObjects[objectId], readyObjects[refId]);
+						}
+					}
+				}
+			}
+
+			return readyObjects.First().Value;
 		}
 
 
@@ -91,81 +145,46 @@ namespace Task02
 
 		private void StreamReader(Stream serializationStream)
 		{
-			if (serializationStream is null)
-				throw new ArgumentException("The provided stream must be non-null");
-
 			using StreamReader reader = new StreamReader(serializationStream);
-			while (!(reader.ReadLine() is null))
-			{
-				this.DeserializedData.Add(reader.ReadLine());
-			}
+			string line;
+			while ((line = reader.ReadLine()) != null)
+				this.DeserializedData.Add(line);
 		}
 
 		private void StreamWriter(Stream serializationStream)
 		{
-			if (!(serializationStream is null))
-			{
-				using StreamWriter writer = new StreamWriter(serializationStream);
-				writer.Write(this.StringBuilder);
-			}
+			using StreamWriter writer = new StreamWriter(serializationStream);
+			writer.Write(StringBuilder);
 		}
-
-		protected void WriteString(string val, string name)
-		{
-			this.StringBuilder.Append(val.GetType() + "||" + name + "||" + val);
-		}
-
-
 
 		// Overridden Write methods:
 
 		protected override void WriteBoolean(bool val, string name)
 		{
-			this.StringBuilder.Append(val.GetType() + "||" + name + "||" + val);
+			StringBuilder.Append(val.GetType() + "||" + name + "||" + val + "\n");
 		}
 
 		protected override void WriteDouble(double val, string name)
 		{
-			this.StringBuilder.Append(val.GetType() + "||" + name + "||" + val);
+			StringBuilder.Append(val.GetType() + "||" + name + "||" + val + "\n");
 		}
 
 		protected override void WriteInt32(int val, string name)
 		{
-			this.StringBuilder.Append(val.GetType() + "||" + name + "||" + val);
+			StringBuilder.Append(val.GetType() + "||" + name + "||" + val + "\n");
 		}
 
 		protected override void WriteObjectRef(object obj, string name, Type memberType)
 		{
-			if (memberType == typeof(string))
+			if (obj != null)
 			{
-				this.WriteString(obj.ToString(), name);
-			}
-			else
-			{
-				if (obj is null)
+				if (memberType == typeof(string))
 				{
-					Type type;
-					switch(name)
-					{
-						case "ExampleA":
-							type = typeof(ClassA);
-							break;
-						case "ExampleB":
-							type = typeof(ClassB);
-							break;
-						case "ExampleC":
-							type = typeof(ClassC);
-							break;
-						default:
-							type = typeof(object);
-							break;
-					}
-
-					StringBuilder.Append(type + "~~" + name + "~~" + null);
+					StringBuilder.Append(obj.GetType() + "||" + name + "||" + obj + "\n");
 				}
 				else
 				{
-					StringBuilder.Append(memberType + "~~" + name + "~~" + m_idGenerator.GetId(obj, out bool firstTime));
+					StringBuilder.Append(obj.GetType() + "||" + name + "||" + m_idGenerator.GetId(obj, out bool firstTime).ToString() + "\n");
 
 					if (firstTime)
 					{
@@ -174,8 +193,6 @@ namespace Task02
 				}
 			}
 		}
-
-
 
 		// Unimplemented methods:
 
