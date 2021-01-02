@@ -24,6 +24,10 @@ namespace Task02.Tests
             B deserializedB = (B)xmlSerializer.Deserialize("..\\..\\..\\XmlSerialization\\Serialized\\B.xml", typeof(B));
             C deserializedC = (C)xmlSerializer.Deserialize("..\\..\\..\\XmlSerialization\\Serialized\\C.xml", typeof(C));
 
+            Assert.AreEqual(deserializedA, A);
+            Assert.AreEqual(deserializedB, B);
+            Assert.AreEqual(deserializedC, C);
+
             Assert.IsTrue(deserializedA.Equals(A));
             Assert.IsTrue(deserializedB.Equals(B));
             Assert.IsTrue(deserializedC.Equals(C));
