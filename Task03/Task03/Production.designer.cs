@@ -108,7 +108,7 @@ namespace Task03
     #endregion
 		
 		public ProductionDataContext() : 
-				base(global::Task03.Properties.Settings.Default.AdventureWorksConnectionString1, mappingSource)
+				base(global::Task03.Properties.Settings.Default.AdventureWorksConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

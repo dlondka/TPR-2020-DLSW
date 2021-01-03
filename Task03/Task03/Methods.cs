@@ -81,5 +81,14 @@ namespace Task03
                 .Sum();
             return Decimal.ToInt32(cost);
         }
+
+        public static ProductCategory GetProductCategoryByString(string productCategoryString)
+		{
+            ProductCategory productCategory = context.ProductCategory
+                .Where(prodCategory => prodCategory.Name.Equals(productCategoryString))
+                .FirstOrDefault();
+
+            return productCategory;
+        }
     }
 }
