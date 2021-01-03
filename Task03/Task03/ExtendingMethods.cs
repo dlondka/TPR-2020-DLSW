@@ -10,27 +10,27 @@ namespace Task03
     {
         private static ProductionDataContext context = new ProductionDataContext();
 
-        public static List<Product> GetProductsWithoutCategoryQ(this List<Product> products)
+        public static List<Product> GetProductsWithoutCategoryQ(List<Product> products)
         {
             IEnumerable<Product> productsWithoutCategory =
                 from product in products where product.ProductSubcategory == null select product;
             return productsWithoutCategory.ToList();
         }
 
-        public static List<Product> GetProductWithoutCategoryM(this List<Product> products)
+        public static List<Product> GetProductWithoutCategoryM(List<Product> products)
         {
             IEnumerable<Product> productsWithoutCategory =
                 products.Where(product => product.ProductSubcategory == null);
             return productsWithoutCategory.ToList();
         }
 
-        public static List<Product> GetProductsAsPageWithSize(this List<Product> products, int count, int pgNumber)
+        public static List<Product> GetProductsAsPageWithSize(List<Product> products, int count, int pgNumber)
         {
             List<Product> productsPage = products.Skip((pgNumber - 1) * count).Take(count).ToList();
             return productsPage;
         }
 
-        public static string GetProductsWithVendorNameQ(this List<Product> products)
+        public static string GetProductsWithVendorNameQ(List<Product> products)
         {
             var productWithVendor = from product in products 
                                     from productVendor in context.ProductVendor 
@@ -38,6 +38,19 @@ namespace Task03
                                     select new { ProductName = productVendor.Product.Name,
                                         VendorName = productVendor.Vendor.Name };
             IEnumerable<string> lines = productWithVendor.Select(prod => prod.ProductName + " - " + prod.VendorName);
+            return String.Join("\n", lines.ToArray());
+        }
+
+        public static string GetProductsNamesWithVendorNameM(List<Product> products)
+        {
+            var productWithVendor = products.Join(
+                context.ProductVendor,
+                product => product.ProductID,
+                productVendor => productVendor.ProductID,
+                (product, productVendor) => new { ProductName = product.Name,
+                    VendorName = productVendor.Vendor.Name });
+            IEnumerable<string> lines = productWithVendor
+                .Select(p => p.ProductName + " - " + p.VendorName);
             return String.Join("\n", lines.ToArray());
         }
     }
