@@ -10,6 +10,10 @@ namespace Task03
     {
         private static ProductionDataContext context = new ProductionDataContext();
 
-
+        public static List<Product> GetProductsByName(string namePart)
+        {
+            List<Product> products = context.Product.Where(product => product.Name.Contains(namePart)).ToList();
+            return products;
+        }
     }
 }
