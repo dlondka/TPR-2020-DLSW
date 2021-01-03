@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task03
 {
-    class Methods
+    public class Methods
     {
         private static ProductionDataContext context = new ProductionDataContext();
 

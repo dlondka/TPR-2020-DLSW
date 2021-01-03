@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendingMethods.cs" />
     <Compile Include="Methods.cs" />
     <Compile Include="Production.designer.cs">
       <AutoGen>True</AutoGen>
@@ -64,7 +65,10 @@
     <None Include="Production.dbml.layout">
       <DependentUpon>Production.dbml</DependentUpon>
     </None>
-    <None Include="Properties\Settings.settings" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
