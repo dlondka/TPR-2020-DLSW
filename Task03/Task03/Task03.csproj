@@ -46,6 +46,11 @@
   <ItemGroup>
     <Compile Include="ExtendingMethods.cs" />
     <Compile Include="Methods.cs" />
+    <Compile Include="Model\MyCategory.cs" />
+    <Compile Include="Model\MyProduct.cs" />
+    <Compile Include="Model\MyVendor.cs" />
+    <Compile Include="MyDataContext.cs" />
+    <Compile Include="MyMethods.cs" />
     <Compile Include="Production.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -33,7 +33,7 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetNProductsFromCategoryTest()
 		{
-            List<MyProduct> products = MyMethods.GetNProductsFromCategory("E.Books");
+            List<MyProduct> products = MyMethods.GetNProductsFromCategory("Books", 2);
 
             Assert.AreEqual(2, products.Count);
             Assert.AreEqual("Przepis na człowieka", products[0].Name);

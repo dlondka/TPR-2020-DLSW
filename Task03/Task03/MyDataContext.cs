@@ -47,6 +47,15 @@ namespace Task03
             p4.Name = "Piernik";
             p4.Category = c2;
             p4.Vendor = v2;
+
+            Categories.Add(c1);
+            Categories.Add(c2);
+            Vendors.Add(v1);
+            Vendors.Add(v2);
+            Products.Add(p1);
+            Products.Add(p2);
+            Products.Add(p3);
+            Products.Add(p4);
         }
     }
 }
