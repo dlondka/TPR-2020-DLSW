@@ -82,7 +82,7 @@ namespace Task03
             return Decimal.ToInt32(cost);
         }
 
-        public static ProductCategory GetProductCategoryByString(string productCategoryString)
+        public static ProductCategory GetProductCategoryByName(string productCategoryString)
 		{
             ProductCategory productCategory = context.ProductCategory
                 .Where(prodCategory => prodCategory.Name.Equals(productCategoryString))

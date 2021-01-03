@@ -15,10 +15,10 @@ namespace Task03.Tests
 			List<Product> products = ExtendingMethods.GetProductsWithoutCategoryQ(Methods.GetProductsByName("Ch"));
 
 			Assert.AreEqual(5, products.Count);
-			Assert.AreEqual("Chain Stays", products[0].Name);
-			Assert.AreEqual("Chainring", products[1].Name);
-			Assert.AreEqual("Chainring Bolts", products[2].Name);
-			Assert.AreEqual("Chainring Nut", products[3].Name);
+			Assert.AreEqual("Chainring Bolts", products[0].Name);
+			Assert.AreEqual("Chainring Nut", products[1].Name);
+			Assert.AreEqual("Chainring", products[2].Name);
+			Assert.AreEqual("Chain Stays", products[3].Name);
 			Assert.AreEqual("Pinch Bolt", products[4].Name);
 		}
 
@@ -28,10 +28,10 @@ namespace Task03.Tests
 			List<Product> products = ExtendingMethods.GetProductsWithoutCategoryQ(Methods.GetProductsByName("Ch"));
 
 			Assert.AreEqual(5, products.Count);
-			Assert.AreEqual("Chain Stays", products[0].Name);
-			Assert.AreEqual("Chainring", products[1].Name);
-			Assert.AreEqual("Chainring Bolts", products[2].Name);
-			Assert.AreEqual("Chainring Nut", products[3].Name);
+			Assert.AreEqual("Chainring Bolts", products[0].Name);
+			Assert.AreEqual("Chainring Nut", products[1].Name);
+			Assert.AreEqual("Chainring", products[2].Name);
+			Assert.AreEqual("Chain Stays", products[3].Name);
 			Assert.AreEqual("Pinch Bolt", products[4].Name);
 		}
 

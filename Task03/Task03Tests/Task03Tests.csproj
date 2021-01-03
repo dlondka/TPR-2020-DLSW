@@ -52,6 +52,7 @@
     <Compile Include="ExtendingMethodsTest.cs" />
     <Compile Include="MethodsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueriesTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
