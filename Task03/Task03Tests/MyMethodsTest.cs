@@ -9,21 +9,35 @@ namespace Task03.Tests
 	public class MyMethodsTest
 	{
 		[TestMethod()]
-		public void M1()
+		public void GetProductsByNameTest()
 		{
-			
-		}
+            List<MyProduct> products = MyMethods.GetProductsByName("");
+
+            Assert.AreEqual(4, products.Count);
+            Assert.AreEqual("Przepis na człowieka", products[0].Name);
+            Assert.AreEqual("Włam się do mózgu", products[1].Name);
+            Assert.AreEqual("Milka", products[2].Name);
+            Assert.AreEqual("Piernik", products[3].Name);
+        }
 
 		[TestMethod()]
-		public void M2()
+		public void GetProductsByVendorNameTest()
 		{
-			
-		}
+            List<MyProduct> products = MyMethods.GetProductsByVendorName("E.Wedel");
+
+            Assert.AreEqual(2, products.Count);
+            Assert.AreEqual("Milka", products[0].Name);
+            Assert.AreEqual("Piernik", products[1].Name);
+        }
 
 		[TestMethod()]
-		public void M3()
+		public void GetNProductsFromCategoryTest()
 		{
-			
-		}
+            List<MyProduct> products = MyMethods.GetNProductsFromCategory("E.Books");
+
+            Assert.AreEqual(2, products.Count);
+            Assert.AreEqual("Przepis na człowieka", products[0].Name);
+            Assert.AreEqual("Włam się do mózgu", products[1].Name);
+        }
 	}
 }
