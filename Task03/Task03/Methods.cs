@@ -15,5 +15,67 @@ namespace Task03
             List<Product> products = context.Product.Where(product => product.Name.Contains(namePart)).ToList();
             return products;
         }
+
+        public static List<Product> GetProductsByVendorName(string vendorName)
+        {
+            List<Product> products = context.ProductVendor
+                .Where(productVendor => productVendor.Vendor.Name.Equals(vendorName))
+                .Select(prodctVendor => prodctVendor.Product).ToList();
+            return products;
+        }
+
+        public static List<string> GetProductNamesByVendorName(string vendorName)
+        {
+            List<string> productNames = context.ProductVendor
+                .Where(productVendor => productVendor.Vendor.Name.Equals(vendorName))
+                .Select(productVendor => productVendor.Product.Name)
+                .ToList();
+
+            return productNames;
+        }
+
+        public static string GetProductVendorByProductName(string productName)
+        {
+            string vendor = context.ProductVendor
+                .Where(productVendor => productVendor.Product.Name.Equals(productName))
+                .Select(productVendor => productVendor.Vendor.Name)
+                .FirstOrDefault();
+
+            return vendor;
+        }
+
+        public static List<Product> GetProductsWithNRecentReviews(int howManyReviews)
+        {
+            List<Product> products = context.ProductReview
+                .OrderBy(productReview => productReview.ReviewDate)
+                .Select(productReview => productReview.Product)
+                .Take(howManyReviews)
+                .Distinct()
+                .ToList();
+
+            return products;
+        }
+
+        public static List<Product> GetNRecentlyReviewedProducts(int howManyProducts)
+        {
+            List<Product> products = context.ProductReview
+                .OrderBy(productReview => productReview.ReviewDate)
+                .Select(productReview => productReview.Product)
+                .Take(howManyProducts)
+                .ToList();
+
+            return products;
+        }
+
+        public static List<Product> GetNProductsFromCategory(string categoryName, int n)
+        {
+            List<Product> products = context.Product
+                .Where(product => product.ProductSubcategory.ProductCategory.Name.Equals(categoryName))
+                .OrderBy(product => product.Name)
+                .Take(n)
+                .ToList();
+
+            return products;
+        }
     }
 }
