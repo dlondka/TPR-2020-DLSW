@@ -34,5 +34,16 @@ namespace Task03.Properties {
                 return ((string)(this["AdventureWorksConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=J:\\Instala\\SQL\\MSSQL15.SQLEXP" +
+            "RESS\\MSSQL\\DATA\\AdventureWorks.mdf;Integrated Security=True;Connect Timeout=30")]
+        public string AdventureWorksConnectionString1 {
+            get {
+                return ((string)(this["AdventureWorksConnectionString1"]));
+            }
+        }
     }
 }
