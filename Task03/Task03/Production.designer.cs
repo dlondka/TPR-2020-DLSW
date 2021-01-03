@@ -23,7 +23,7 @@ namespace Task03
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="AdventureWorks")]
-	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
+	public partial class ProductionDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -101,31 +101,31 @@ namespace Task03
     partial void DeleteWorkOrderRouting(WorkOrderRouting instance);
     #endregion
 		
-		public DataClasses1DataContext() : 
+		public ProductionDataContext() : 
 				base(global::Task03.Properties.Settings.Default.AdventureWorksConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClasses1DataContext(string connection) : 
+		public ProductionDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClasses1DataContext(System.Data.IDbConnection connection) : 
+		public ProductionDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClasses1DataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public ProductionDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DataClasses1DataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public ProductionDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
