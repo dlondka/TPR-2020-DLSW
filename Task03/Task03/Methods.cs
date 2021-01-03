@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task03
 {
-    class Methods
+    public class Methods
     {
         private static ProductionDataContext context = new ProductionDataContext();
 
@@ -80,6 +80,15 @@ namespace Task03
                 .Select(product => product.StandardCost)
                 .Sum();
             return Decimal.ToInt32(cost);
+        }
+
+        public static ProductCategory GetProductCategoryByString(string productCategoryString)
+		{
+            ProductCategory productCategory = context.ProductCategory
+                .Where(prodCategory => prodCategory.Name.Equals(productCategoryString))
+                .FirstOrDefault();
+
+            return productCategory;
         }
     }
 }
