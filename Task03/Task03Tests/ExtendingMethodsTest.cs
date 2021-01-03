@@ -58,5 +58,16 @@ namespace Task03.Tests
 			Assert.AreEqual("Bearing Ball - Wood Fitness", products.Split('\n')[1]);
 			Assert.AreEqual("Headset Ball Bearings - American Bicycles and Wheels", products.Split('\n')[2]);
 		}
+
+		[TestMethod()]
+		public void GetProductsNamesWithVendorNameMTest()
+		{
+			string products = ExtendingMethods.GetProductsWithVendorNameQ(Methods.GetProductsByName("A"));
+
+			Assert.AreEqual(12993, products.Length);
+			Assert.AreEqual("Adjustable Race - Litware, Inc.", products.Split('\n')[0]);
+			Assert.AreEqual("Bearing Ball - Wood Fitness", products.Split('\n')[1]);
+			Assert.AreEqual("Headset Ball Bearings - American Bicycles and Wheels", products.Split('\n')[2]);
+		}
 	}
 }
