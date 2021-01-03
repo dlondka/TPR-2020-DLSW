@@ -30,7 +30,6 @@ namespace Task03
                 .Where(productVendor => productVendor.Vendor.Name.Equals(vendorName))
                 .Select(productVendor => productVendor.Product.Name)
                 .ToList();
-
             return productNames;
         }
 
@@ -40,7 +39,6 @@ namespace Task03
                 .Where(productVendor => productVendor.Product.Name.Equals(productName))
                 .Select(productVendor => productVendor.Vendor.Name)
                 .FirstOrDefault();
-
             return vendor;
         }
 
@@ -52,7 +50,6 @@ namespace Task03
                 .Take(howManyReviews)
                 .Distinct()
                 .ToList();
-
             return products;
         }
 
@@ -63,7 +60,6 @@ namespace Task03
                 .Select(productReview => productReview.Product)
                 .Take(howManyProducts)
                 .ToList();
-
             return products;
         }
 
@@ -74,8 +70,16 @@ namespace Task03
                 .OrderBy(product => product.Name)
                 .Take(n)
                 .ToList();
-
             return products;
+        }
+
+        public static int GetTotalStandardCostByCategory(ProductCategory category)
+        {
+            decimal costs = context.Product
+                .Where(product => product.ProductSubcategory.ProductCategory.ProductCategoryID == category.ProductCategoryID)
+                .Select(product => product.StandardCost)
+                .Sum();
+            return Decimal.ToInt32(costs);
         }
     }
 }
