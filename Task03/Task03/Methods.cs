@@ -75,11 +75,11 @@ namespace Task03
 
         public static int GetTotalStandardCostByCategory(ProductCategory category)
         {
-            decimal costs = context.Product
+            decimal cost = context.Product
                 .Where(product => product.ProductSubcategory.ProductCategory.ProductCategoryID == category.ProductCategoryID)
                 .Select(product => product.StandardCost)
                 .Sum();
-            return Decimal.ToInt32(costs);
+            return Decimal.ToInt32(cost);
         }
     }
 }
