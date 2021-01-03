@@ -1,17 +1,20 @@
-﻿using Task03;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Task03;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Task03.Tests
 {
 	[TestClass()]
-	public class MethodsTest
+	public class QueriesTest
 	{
 		[TestMethod()]
 		public void GetProductsByNameTest()
 		{
-			List<Product> products = Methods.GetProductsByName("Metal Sheet");
+			List<Product> products = Queries.GetProductsByName("Metal Sheet");
 
 			Assert.AreEqual(7, products.Count);
 			Assert.AreEqual("MS-0253", products[0].ProductNumber);
@@ -26,7 +29,7 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByVendorNameTest()
 		{
-			List<Product> products = Methods.GetProductsByVendorName("Custom Frames, Inc.");
+			List<Product> products = Queries.GetProductsByVendorName("Custom Frames, Inc.");
 
 			Assert.AreEqual(14, products.Count);
 			Assert.AreEqual("MS-0253", products[6].ProductNumber);
@@ -41,7 +44,7 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductNamesByVendorNameTest()
 		{
-			List<string> products = Methods.GetProductNamesByVendorName("Custom Frames, Inc.");
+			List<string> products = Queries.GetProductNamesByVendorName("Custom Frames, Inc.");
 
 			Assert.AreEqual(14, products.Count);
 			Assert.AreEqual("Metal Sheet 2", products[6]);
@@ -56,24 +59,24 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductVendorByProductNameTest()
 		{
-			string vendorName = Methods.GetProductVendorByProductName("Metal Sheet 1");
+			string vendorName = Queries.GetProductVendorByProductName("Metal Sheet 1");
 			Assert.AreEqual("Custom Frames, Inc.", vendorName);
 		}
 
 		[TestMethod()]
 		public void GetProductsWithNRecentReviewsTest()
 		{
-			List<Product> products = Methods.GetProductsWithNRecentReviews(5);
+			List<Product> products = Queries.GetProductsWithNRecentReviews(5);
 			Assert.AreEqual(3, products.Count);
 			Assert.AreEqual("Mountain Bike Socks, M", products[0].Name);
-			Assert.AreEqual("Road-550-W Yellow, 40", products[1].Name);
-			Assert.AreEqual("HL Mountain Pedal", products[2].Name);
+			Assert.AreEqual("HL Mountain Pedal", products[1].Name);
+			Assert.AreEqual("Road-550-W Yellow, 40", products[2].Name);
 		}
 
 		[TestMethod()]
 		public void GetNRecentlyReviewedProductsTest()
 		{
-			List<Product> products = Methods.GetNRecentlyReviewedProducts(4);
+			List<Product> products = Queries.GetNRecentlyReviewedProducts(4);
 			Assert.AreEqual(4, products.Count);
 			Assert.AreEqual("Mountain Bike Socks, M", products[0].Name);
 			Assert.AreEqual("HL Mountain Pedal", products[1].Name);
@@ -84,7 +87,7 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetNProductsFromCategoryTest()
 		{
-			List<Product> products = Methods.GetNProductsFromCategory("Bikes", 5);
+			List<Product> products = Queries.GetNProductsFromCategory("Bikes", 5);
 
 			Console.WriteLine(products[0].Name);
 			Console.WriteLine(products[1].Name);
@@ -103,8 +106,8 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetTotalStandardCostByCategoryTest()
 		{
-			ProductCategory bikes = Methods.GetProductCategoryByName("Bikes");
-			int cost = Methods.GetTotalStandardCostByCategory(bikes);
+			ProductCategory bikes = Queries.GetProductCategoryByName("Bikes");
+			int cost = Queries.GetTotalStandardCostByCategory(bikes);
 
 			Assert.AreEqual(92092, cost);
 		}
@@ -112,7 +115,7 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductCategoryByNameTest()
 		{
-			ProductCategory productCategory = Methods.GetProductCategoryByName("Bikes");
+			ProductCategory productCategory = Queries.GetProductCategoryByName("Bikes");
 
 			Assert.AreEqual("Bikes", productCategory.Name);
 		}
