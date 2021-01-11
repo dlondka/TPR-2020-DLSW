@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Task03;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task03.Tests
 {
@@ -14,7 +9,14 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByNameTest()
 		{
-			List<Product> products = Queries.GetProductsByName("Metal Sheet");
+			Queries queries = new Queries();
+			List<Product> products = queries.GetProductsByName("Metal Sheet");
+			queries.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.ProductNumber.CompareTo(p2.ProductNumber);
+				});
 
 			Assert.AreEqual(7, products.Count);
 			Assert.AreEqual("MS-0253", products[0].ProductNumber);
@@ -29,7 +31,14 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByVendorNameTest()
 		{
-			List<Product> products = Queries.GetProductsByVendorName("Custom Frames, Inc.");
+			Queries queries = new Queries();
+			List<Product> products = queries.GetProductsByVendorName("Custom Frames, Inc.");
+			queries.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.ProductNumber.CompareTo(p2.ProductNumber);
+				});
 
 			Assert.AreEqual(14, products.Count);
 			Assert.AreEqual("MS-0253", products[6].ProductNumber);
@@ -44,56 +53,79 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductNamesByVendorNameTest()
 		{
-			List<string> products = Queries.GetProductNamesByVendorName("Custom Frames, Inc.");
+			Queries queries = new Queries();
+			List<string> products = queries.GetProductNamesByVendorName("Custom Frames, Inc.");
+			queries.CloseConnection();
+			products.Sort();
 
 			Assert.AreEqual(14, products.Count);
-			Assert.AreEqual("Metal Sheet 2", products[6]);
-			Assert.AreEqual("Metal Sheet 3", products[7]);
-			Assert.AreEqual("Metal Sheet 7", products[8]);
+			Assert.AreEqual("Metal Sheet 1", products[6]);
+			Assert.AreEqual("Metal Sheet 2", products[7]);
+			Assert.AreEqual("Metal Sheet 3", products[8]);
 			Assert.AreEqual("Metal Sheet 4", products[9]);
 			Assert.AreEqual("Metal Sheet 5", products[10]);
 			Assert.AreEqual("Metal Sheet 6", products[11]);
-			Assert.AreEqual("Metal Sheet 1", products[12]);
+			Assert.AreEqual("Metal Sheet 7", products[12]);
 		}
 
 		[TestMethod()]
 		public void GetProductVendorByProductNameTest()
 		{
-			string vendorName = Queries.GetProductVendorByProductName("Metal Sheet 1");
+			Queries queries = new Queries();
+			string vendorName = queries.GetProductVendorByProductName("Metal Sheet 1");
+			queries.CloseConnection();
+
 			Assert.AreEqual("Custom Frames, Inc.", vendorName);
 		}
 
 		[TestMethod()]
 		public void GetProductsWithNRecentReviewsTest()
 		{
-			List<Product> products = Queries.GetProductsWithNRecentReviews(5);
+			Queries queries = new Queries();
+			List<Product> products = queries.GetProductsWithNRecentReviews(5);
+			queries.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.Name.CompareTo(p2.Name);
+				});
+
 			Assert.AreEqual(3, products.Count);
-			Assert.AreEqual("Mountain Bike Socks, M", products[0].Name);
-			Assert.AreEqual("HL Mountain Pedal", products[1].Name);
+			Assert.AreEqual("HL Mountain Pedal", products[0].Name);
+			Assert.AreEqual("Mountain Bike Socks, M", products[1].Name);
 			Assert.AreEqual("Road-550-W Yellow, 40", products[2].Name);
 		}
 
 		[TestMethod()]
 		public void GetNRecentlyReviewedProductsTest()
 		{
-			List<Product> products = Queries.GetNRecentlyReviewedProducts(4);
+			Queries queries = new Queries();
+			List<Product> products = queries.GetNRecentlyReviewedProducts(4);
+			queries.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.Name.CompareTo(p2.Name);
+				});
+
 			Assert.AreEqual(4, products.Count);
-			Assert.AreEqual("Mountain Bike Socks, M", products[0].Name);
+			Assert.AreEqual("HL Mountain Pedal", products[0].Name);
 			Assert.AreEqual("HL Mountain Pedal", products[1].Name);
-			Assert.AreEqual("HL Mountain Pedal", products[2].Name);
+			Assert.AreEqual("Mountain Bike Socks, M", products[2].Name);
 			Assert.AreEqual("Road-550-W Yellow, 40", products[3].Name);
 		}
 
 		[TestMethod()]
 		public void GetNProductsFromCategoryTest()
 		{
-			List<Product> products = Queries.GetNProductsFromCategory("Bikes", 5);
-
-			Console.WriteLine(products[0].Name);
-			Console.WriteLine(products[1].Name);
-			Console.WriteLine(products[2].Name);
-			Console.WriteLine(products[3].Name);
-			Console.WriteLine(products[4].Name);
+			Queries queries = new Queries();
+			List<Product> products = queries.GetNProductsFromCategory("Bikes", 5);
+			queries.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.Name.CompareTo(p2.Name);
+				});
 
 			Assert.AreEqual(5, products.Count);
 			Assert.AreEqual("Mountain-100 Black, 38", products[0].Name);
@@ -106,8 +138,10 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetTotalStandardCostByCategoryTest()
 		{
-			ProductCategory bikes = Queries.GetProductCategoryByName("Bikes");
-			int cost = Queries.GetTotalStandardCostByCategory(bikes);
+			Queries queries = new Queries();
+			ProductCategory bikes = queries.GetProductCategoryByName("Bikes");
+			int cost = queries.GetTotalStandardCostByCategory(bikes);
+			queries.CloseConnection();
 
 			Assert.AreEqual(92092, cost);
 		}
@@ -115,7 +149,9 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductCategoryByNameTest()
 		{
-			ProductCategory productCategory = Queries.GetProductCategoryByName("Bikes");
+			Queries queries = new Queries();
+			ProductCategory productCategory = queries.GetProductCategoryByName("Bikes");
+			queries.CloseConnection();
 
 			Assert.AreEqual("Bikes", productCategory.Name);
 		}

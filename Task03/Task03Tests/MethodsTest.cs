@@ -1,6 +1,4 @@
-﻿using Task03;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace Task03.Tests
@@ -11,7 +9,14 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByNameTest()
 		{
-			List<Product> products = Methods.GetProductsByName("Metal Sheet");
+			Methods methods = new Methods();
+			List<Product> products = methods.GetProductsByName("Metal Sheet");
+			methods.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.ProductNumber.CompareTo(p2.ProductNumber);
+				});
 
 			Assert.AreEqual(7, products.Count);
 			Assert.AreEqual("MS-0253", products[0].ProductNumber);
@@ -26,7 +31,14 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByVendorNameTest()
 		{
-			List<Product> products = Methods.GetProductsByVendorName("Custom Frames, Inc.");
+			Methods methods = new Methods();
+			List<Product> products = methods.GetProductsByVendorName("Custom Frames, Inc.");
+			methods.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.ProductNumber.CompareTo(p2.ProductNumber);
+				});
 
 			Assert.AreEqual(14, products.Count);
 			Assert.AreEqual("MS-0253", products[6].ProductNumber);
@@ -41,56 +53,79 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductNamesByVendorNameTest()
 		{
-			List<string> products = Methods.GetProductNamesByVendorName("Custom Frames, Inc.");
+			Methods methods = new Methods();
+			List<string> products = methods.GetProductNamesByVendorName("Custom Frames, Inc.");
+			methods.CloseConnection();
+			products.Sort();
 
 			Assert.AreEqual(14, products.Count);
-			Assert.AreEqual("Metal Sheet 2", products[6]);
-			Assert.AreEqual("Metal Sheet 3", products[7]);
-			Assert.AreEqual("Metal Sheet 7", products[8]);
+			Assert.AreEqual("Metal Sheet 1", products[6]);
+			Assert.AreEqual("Metal Sheet 2", products[7]);
+			Assert.AreEqual("Metal Sheet 3", products[8]);
 			Assert.AreEqual("Metal Sheet 4", products[9]);
 			Assert.AreEqual("Metal Sheet 5", products[10]);
 			Assert.AreEqual("Metal Sheet 6", products[11]);
-			Assert.AreEqual("Metal Sheet 1", products[12]);
+			Assert.AreEqual("Metal Sheet 7", products[12]);
 		}
 
 		[TestMethod()]
 		public void GetProductVendorByProductNameTest()
 		{
-			string vendorName = Methods.GetProductVendorByProductName("Metal Sheet 1");
+			Methods methods = new Methods();
+			string vendorName = methods.GetProductVendorByProductName("Metal Sheet 1");
+			methods.CloseConnection();
+
 			Assert.AreEqual("Custom Frames, Inc.", vendorName);
 		}
 
 		[TestMethod()]
 		public void GetProductsWithNRecentReviewsTest()
 		{
-			List<Product> products = Methods.GetProductsWithNRecentReviews(5);
+			Methods methods = new Methods();
+			List<Product> products = methods.GetProductsWithNRecentReviews(5);
+			methods.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.Name.CompareTo(p2.Name);
+				});
+
 			Assert.AreEqual(3, products.Count);
-			Assert.AreEqual("Mountain Bike Socks, M", products[0].Name);
-			Assert.AreEqual("Road-550-W Yellow, 40", products[1].Name);
-			Assert.AreEqual("HL Mountain Pedal", products[2].Name);
+			Assert.AreEqual("HL Mountain Pedal", products[0].Name);
+			Assert.AreEqual("Mountain Bike Socks, M", products[1].Name);
+			Assert.AreEqual("Road-550-W Yellow, 40", products[2].Name);
 		}
 
 		[TestMethod()]
 		public void GetNRecentlyReviewedProductsTest()
 		{
-			List<Product> products = Methods.GetNRecentlyReviewedProducts(4);
+			Methods methods = new Methods();
+			List<Product> products = methods.GetNRecentlyReviewedProducts(4);
+			methods.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.Name.CompareTo(p2.Name);
+				});
+
 			Assert.AreEqual(4, products.Count);
-			Assert.AreEqual("Mountain Bike Socks, M", products[0].Name);
+			Assert.AreEqual("HL Mountain Pedal", products[0].Name);
 			Assert.AreEqual("HL Mountain Pedal", products[1].Name);
-			Assert.AreEqual("HL Mountain Pedal", products[2].Name);
+			Assert.AreEqual("Mountain Bike Socks, M", products[2].Name);
 			Assert.AreEqual("Road-550-W Yellow, 40", products[3].Name);
 		}
 
 		[TestMethod()]
 		public void GetNProductsFromCategoryTest()
 		{
-			List<Product> products = Methods.GetNProductsFromCategory("Bikes", 5);
-
-			Console.WriteLine(products[0].Name);
-			Console.WriteLine(products[1].Name);
-			Console.WriteLine(products[2].Name);
-			Console.WriteLine(products[3].Name);
-			Console.WriteLine(products[4].Name);
+			Methods methods = new Methods();
+			List<Product> products = methods.GetNProductsFromCategory("Bikes", 5);
+			methods.CloseConnection();
+			products.Sort(
+				delegate (Product p1, Product p2)
+				{
+					return p1.Name.CompareTo(p2.Name);
+				});
 
 			Assert.AreEqual(5, products.Count);
 			Assert.AreEqual("Mountain-100 Black, 38", products[0].Name);
@@ -103,8 +138,10 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetTotalStandardCostByCategoryTest()
 		{
-			ProductCategory bikes = Methods.GetProductCategoryByName("Bikes");
-			int cost = Methods.GetTotalStandardCostByCategory(bikes);
+			Methods methods = new Methods();
+			ProductCategory bikes = methods.GetProductCategoryByName("Bikes");
+			int cost = methods.GetTotalStandardCostByCategory(bikes);
+			methods.CloseConnection();
 
 			Assert.AreEqual(92092, cost);
 		}
@@ -112,7 +149,9 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductCategoryByNameTest()
 		{
-			ProductCategory productCategory = Methods.GetProductCategoryByName("Bikes");
+			Methods methods = new Methods();
+			ProductCategory productCategory = methods.GetProductCategoryByName("Bikes");
+			methods.CloseConnection();
 
 			Assert.AreEqual("Bikes", productCategory.Name);
 		}
