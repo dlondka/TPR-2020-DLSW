@@ -54,9 +54,12 @@ namespace Task03
             return String.Join("\n", lines.ToArray());
         }
 
-        public void closeConnecion()
+        public void CloseConnecion()
 		{
-            context.Dispose();
+            if (context.DatabaseExists())
+			{
+                context.Dispose();
+            }
 		}
     }
 }

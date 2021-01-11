@@ -91,9 +91,12 @@ namespace Task03
             return productCategory;
         }
 
-        public void closeConnection()
+        public void CloseConnection()
 		{
-            context.Dispose();
-		}
+            if (context.DatabaseExists())
+            {
+                context.Dispose();
+            }
+        }
     }
 }
