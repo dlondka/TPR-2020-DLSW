@@ -6,31 +6,31 @@ using System.Threading.Tasks;
 
 namespace Task03
 {
-    public static class ExtendingMethods
+    public class ExtendingMethods
     {
-        private static ProductionDataContext context = new ProductionDataContext();
+        private ProductionDataContext context = new ProductionDataContext();
 
-        public static List<Product> GetProductsWithoutCategoryQ(List<Product> products)
+        public List<Product> GetProductsWithoutCategoryQ(List<Product> products)
         {
             IEnumerable<Product> productsWithoutCategory =
                 from product in products where product.ProductSubcategory == null select product;
             return productsWithoutCategory.ToList();
         }
 
-        public static List<Product> GetProductWithoutCategoryM(List<Product> products)
+        public List<Product> GetProductWithoutCategoryM(List<Product> products)
         {
             IEnumerable<Product> productsWithoutCategory =
                 products.Where(product => product.ProductSubcategory == null);
             return productsWithoutCategory.ToList();
         }
 
-        public static List<Product> GetProductsAsPageWithSize(List<Product> products, int count, int pgNumber)
+        public List<Product> GetProductsAsPageWithSize(List<Product> products, int count, int pgNumber)
         {
             List<Product> productsPage = products.Skip((pgNumber - 1) * count).Take(count).ToList();
             return productsPage;
         }
 
-        public static string GetProductsWithVendorNameQ(List<Product> products)
+        public string GetProductsWithVendorNameQ(List<Product> products)
         {
             var productWithVendor = from product in products 
                                     from productVendor in context.ProductVendor 
@@ -41,7 +41,7 @@ namespace Task03
             return String.Join("\n", lines.ToArray());
         }
 
-        public static string GetProductsNamesWithVendorNameM(List<Product> products)
+        public string GetProductsNamesWithVendorNameM(List<Product> products)
         {
             var productWithVendor = products.Join(
                 context.ProductVendor,
@@ -53,5 +53,10 @@ namespace Task03
                 .Select(p => p.ProductName + " - " + p.VendorName);
             return String.Join("\n", lines.ToArray());
         }
+
+        public void closeConnecion()
+		{
+            context.Dispose();
+		}
     }
 }

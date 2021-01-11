@@ -8,10 +8,9 @@ namespace Task03
 {
     public class Queries
     {
-        private static ProductionDataContext context = new ProductionDataContext();
+        private ProductionDataContext context = new ProductionDataContext();
 
-
-        public static List<Product> GetProductsByName(string namePart)
+        public List<Product> GetProductsByName(string namePart)
         {
             IEnumerable<Product> products = from product in context.Product
                                             where product.Name.Contains(namePart)
@@ -20,7 +19,7 @@ namespace Task03
             return new List<Product>(products.ToArray());
         }
 
-        public static List<Product> GetProductsByVendorName(string vendorName)
+        public List<Product> GetProductsByVendorName(string vendorName)
         {
             IEnumerable<Product> products = from productVendor in context.ProductVendor
                                             where productVendor.Vendor.Name.Equals(vendorName)
@@ -29,7 +28,7 @@ namespace Task03
             return new List<Product>(products.ToArray());
         }
 
-        public static List<string> GetProductNamesByVendorName(string vendorName)
+        public List<string> GetProductNamesByVendorName(string vendorName)
         {
             IEnumerable<string> productNames = from productVendor in context.ProductVendor
                                                where productVendor.Vendor.Name.Equals(vendorName)
@@ -38,7 +37,7 @@ namespace Task03
             return new List<string>(productNames.ToArray());
         }
 
-        public static string GetProductVendorByProductName(string productName)
+        public string GetProductVendorByProductName(string productName)
         {
             IEnumerable<string> vendor = from productVendor in context.ProductVendor
                                          where productVendor.Product.Name.Equals(productName)
@@ -47,7 +46,7 @@ namespace Task03
             return vendor.First();
         }
 
-        public static List<Product> GetProductsWithNRecentReviews(int howManyReviews)
+        public List<Product> GetProductsWithNRecentReviews(int howManyReviews)
         {
             IEnumerable<Product> products = from productReview in context.ProductReview
                                             orderby productReview.ReviewDate
@@ -56,7 +55,7 @@ namespace Task03
             return new List<Product>(products.Take(howManyReviews).Distinct().ToArray());
         }
 
-        public static List<Product> GetNRecentlyReviewedProducts(int howManyProducts)
+        public List<Product> GetNRecentlyReviewedProducts(int howManyProducts)
         {
             IEnumerable<Product> products = from productReview in context.ProductReview
                                             orderby productReview.ReviewDate
@@ -65,7 +64,7 @@ namespace Task03
             return new List<Product>(products.ToArray().Take(howManyProducts));
         }
 
-        public static List<Product> GetNProductsFromCategory(string categoryName, int n)
+        public List<Product> GetNProductsFromCategory(string categoryName, int n)
         {
             IEnumerable<Product> products = from product in context.Product
                                             where product.ProductSubcategory.ProductCategory.Name.Equals(categoryName)
@@ -75,7 +74,7 @@ namespace Task03
             return products.Take(n).ToList();
         }
 
-        public static int GetTotalStandardCostByCategory(ProductCategory category)
+        public int GetTotalStandardCostByCategory(ProductCategory category)
         {
             IEnumerable<decimal> costs = from product in context.Product
                                          where product.ProductSubcategory.ProductCategory.ProductCategoryID == category.ProductCategoryID
@@ -84,12 +83,17 @@ namespace Task03
             return Decimal.ToInt32(costs.Sum());
         }
 
-        public static ProductCategory GetProductCategoryByName(string name)
+        public ProductCategory GetProductCategoryByName(string name)
         {
             IEnumerable<ProductCategory> categories = from category in context.ProductCategory
                                                       where category.Name.Equals(name)
                                                       select category;
             return categories.First();
         }
+
+        public void closeConnection()
+		{
+            context.Dispose();
+		}
     }
 }

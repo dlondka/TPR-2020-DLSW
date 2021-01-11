@@ -8,15 +8,15 @@ namespace Task03
 {
     public class Methods
     {
-        private static ProductionDataContext context = new ProductionDataContext();
+        private ProductionDataContext context = new ProductionDataContext();
 
-        public static List<Product> GetProductsByName(string namePart)
+        public List<Product> GetProductsByName(string namePart)
         {
             List<Product> products = context.Product.Where(product => product.Name.Contains(namePart)).ToList();
             return products;
         }
 
-        public static List<Product> GetProductsByVendorName(string vendorName)
+        public List<Product> GetProductsByVendorName(string vendorName)
         {
             List<Product> products = context.ProductVendor
                 .Where(productVendor => productVendor.Vendor.Name.Equals(vendorName))
@@ -24,7 +24,7 @@ namespace Task03
             return products;
         }
 
-        public static List<string> GetProductNamesByVendorName(string vendorName)
+        public List<string> GetProductNamesByVendorName(string vendorName)
         {
             List<string> productNames = context.ProductVendor
                 .Where(productVendor => productVendor.Vendor.Name.Equals(vendorName))
@@ -33,7 +33,7 @@ namespace Task03
             return productNames;
         }
 
-        public static string GetProductVendorByProductName(string productName)
+        public string GetProductVendorByProductName(string productName)
         {
             string vendor = context.ProductVendor
                 .Where(productVendor => productVendor.Product.Name.Equals(productName))
@@ -42,7 +42,7 @@ namespace Task03
             return vendor;
         }
 
-        public static List<Product> GetProductsWithNRecentReviews(int howManyReviews)
+        public List<Product> GetProductsWithNRecentReviews(int howManyReviews)
         {
             List<Product> products = context.ProductReview
                 .OrderBy(productReview => productReview.ReviewDate)
@@ -53,7 +53,7 @@ namespace Task03
             return products;
         }
 
-        public static List<Product> GetNRecentlyReviewedProducts(int howManyProducts)
+        public List<Product> GetNRecentlyReviewedProducts(int howManyProducts)
         {
             List<Product> products = context.ProductReview
                 .OrderBy(productReview => productReview.ReviewDate)
@@ -63,7 +63,7 @@ namespace Task03
             return products;
         }
 
-        public static List<Product> GetNProductsFromCategory(string categoryName, int n)
+        public List<Product> GetNProductsFromCategory(string categoryName, int n)
         {
             List<Product> products = context.Product
                 .Where(product => product.ProductSubcategory.ProductCategory.Name.Equals(categoryName))
@@ -73,7 +73,7 @@ namespace Task03
             return products;
         }
 
-        public static int GetTotalStandardCostByCategory(ProductCategory category)
+        public int GetTotalStandardCostByCategory(ProductCategory category)
         {
             decimal cost = context.Product
                 .Where(product => product.ProductSubcategory.ProductCategory.ProductCategoryID == category.ProductCategoryID)
@@ -82,7 +82,7 @@ namespace Task03
             return Decimal.ToInt32(cost);
         }
 
-        public static ProductCategory GetProductCategoryByName(string productCategoryString)
+        public ProductCategory GetProductCategoryByName(string productCategoryString)
 		{
             ProductCategory productCategory = context.ProductCategory
                 .Where(prodCategory => prodCategory.Name.Equals(productCategoryString))
@@ -90,5 +90,10 @@ namespace Task03
 
             return productCategory;
         }
+
+        public void closeConnection()
+		{
+            context.Dispose();
+		}
     }
 }
