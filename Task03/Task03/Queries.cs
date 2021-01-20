@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task03
 {
-    public class Queries
+    public class Queries : IDisposable
     {
         private ProductionDataContext context = new ProductionDataContext();
 
@@ -91,7 +91,7 @@ namespace Task03
             return categories.First();
         }
 
-        public void CloseConnection()
+        public void Dispose()
 		{
             if (context.DatabaseExists())
             {

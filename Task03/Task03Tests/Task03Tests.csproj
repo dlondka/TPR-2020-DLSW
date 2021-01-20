@@ -60,7 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Task03\Task03.csproj">
-      <Project>{A3E6137D-5B51-4B8E-AA2A-065660BBB53D}</Project>
+      <Project>{a3e6137d-5b51-4b8e-aa2a-065660bbb53d}</Project>
       <Name>Task03</Name>
     </ProjectReference>
   </ItemGroup>

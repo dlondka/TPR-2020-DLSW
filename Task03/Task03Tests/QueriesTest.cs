@@ -9,9 +9,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByNameTest()
 		{
-			Queries queries = new Queries();
-			List<Product> products = queries.GetProductsByName("Metal Sheet");
-			queries.CloseConnection();
+			List<Product> products;
+			using (Queries queries = new Queries())
+			{
+				products = queries.GetProductsByName("Metal Sheet");
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -31,9 +34,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByVendorNameTest()
 		{
-			Queries queries = new Queries();
-			List<Product> products = queries.GetProductsByVendorName("Custom Frames, Inc.");
-			queries.CloseConnection();
+			List<Product> products;
+			using (Queries queries = new Queries())
+			{
+				products = queries.GetProductsByVendorName("Custom Frames, Inc.");
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -53,9 +59,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductNamesByVendorNameTest()
 		{
-			Queries queries = new Queries();
-			List<string> products = queries.GetProductNamesByVendorName("Custom Frames, Inc.");
-			queries.CloseConnection();
+			List<string> products;
+			using (Queries queries = new Queries())
+			{
+				products = queries.GetProductNamesByVendorName("Custom Frames, Inc.");
+			}
+
 			products.Sort();
 
 			Assert.AreEqual(14, products.Count);
@@ -71,9 +80,11 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductVendorByProductNameTest()
 		{
-			Queries queries = new Queries();
-			string vendorName = queries.GetProductVendorByProductName("Metal Sheet 1");
-			queries.CloseConnection();
+			string vendorName;
+			using (Queries queries = new Queries())
+			{
+				vendorName = queries.GetProductVendorByProductName("Metal Sheet 1");
+			}
 
 			Assert.AreEqual("Custom Frames, Inc.", vendorName);
 		}
@@ -81,9 +92,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsWithNRecentReviewsTest()
 		{
-			Queries queries = new Queries();
-			List<Product> products = queries.GetProductsWithNRecentReviews(5);
-			queries.CloseConnection();
+			List<Product> products;
+			using (Queries queries = new Queries())
+			{
+				products = queries.GetProductsWithNRecentReviews(5);
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -99,9 +113,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetNRecentlyReviewedProductsTest()
 		{
-			Queries queries = new Queries();
-			List<Product> products = queries.GetNRecentlyReviewedProducts(4);
-			queries.CloseConnection();
+			List<Product> products;
+			using (Queries queries = new Queries())
+			{
+				products = queries.GetNRecentlyReviewedProducts(4);
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -118,9 +135,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetNProductsFromCategoryTest()
 		{
-			Queries queries = new Queries();
-			List<Product> products = queries.GetNProductsFromCategory("Bikes", 5);
-			queries.CloseConnection();
+			List<Product> products;
+			using (Queries queries = new Queries())
+			{
+				products = queries.GetNProductsFromCategory("Bikes", 5);
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -138,10 +158,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetTotalStandardCostByCategoryTest()
 		{
-			Queries queries = new Queries();
-			ProductCategory bikes = queries.GetProductCategoryByName("Bikes");
-			int cost = queries.GetTotalStandardCostByCategory(bikes);
-			queries.CloseConnection();
+			int cost;
+			using (Queries queries = new Queries())
+			{
+				ProductCategory bikes = queries.GetProductCategoryByName("Bikes");
+				cost = queries.GetTotalStandardCostByCategory(bikes);
+			}
 
 			Assert.AreEqual(92092, cost);
 		}
@@ -149,9 +171,11 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductCategoryByNameTest()
 		{
-			Queries queries = new Queries();
-			ProductCategory productCategory = queries.GetProductCategoryByName("Bikes");
-			queries.CloseConnection();
+			ProductCategory productCategory;
+			using (Queries queries = new Queries())
+			{
+				productCategory = queries.GetProductCategoryByName("Bikes");
+			}
 
 			Assert.AreEqual("Bikes", productCategory.Name);
 		}

@@ -13,16 +13,20 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsWithoutCategoryQTest()
 		{
-			ExtendingMethods extendingMethods = new ExtendingMethods();
-			Methods methods = new Methods();
-			List<Product> products = extendingMethods.GetProductsWithoutCategoryQ(methods.GetProductsByName("Ch"));
-			methods.CloseConnection();
-			extendingMethods.CloseConnecion();
+			List<Product> products;
+			using (ExtendingMethods extendingMethods = new ExtendingMethods())
+			{
+				using (Methods methods = new Methods())
+				{
+					products = extendingMethods.GetProductsWithoutCategoryQ(methods.GetProductsByName("Ch"));
+				}
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
-			{
-				return p1.Name.CompareTo(p2.Name);
-			});
+				{
+					return p1.Name.CompareTo(p2.Name);
+				});
 
 			Assert.AreEqual(5, products.Count);
 			Assert.AreEqual("Chain Stays", products[0].Name);
@@ -35,11 +39,15 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductWithoutCategoryMTest()
 		{
-			ExtendingMethods extendingMethods = new ExtendingMethods();
-			Methods methods = new Methods();
-			List<Product> products = extendingMethods.GetProductsWithoutCategoryQ(methods.GetProductsByName("Ch"));
-			methods.CloseConnection();
-			extendingMethods.CloseConnecion();
+			List<Product> products;
+			using (ExtendingMethods extendingMethods = new ExtendingMethods())
+			{
+				using (Methods methods = new Methods())
+				{
+					products = extendingMethods.GetProductsWithoutCategoryQ(methods.GetProductsByName("Ch"));
+				}
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -57,11 +65,14 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsAsPageWithSizeTest()
 		{
-			ExtendingMethods extendingMethods = new ExtendingMethods();
-			Methods methods = new Methods();
-			List<Product> products = extendingMethods.GetProductsAsPageWithSize(methods.GetProductsByName(""), 5, 2);
-			methods.CloseConnection();
-			extendingMethods.CloseConnecion();
+			List<Product> products;
+			using (ExtendingMethods extendingMethods = new ExtendingMethods())
+			{
+				using (Methods methods = new Methods())
+				{
+					products = extendingMethods.GetProductsAsPageWithSize(methods.GetProductsByName(""), 5, 2);
+				}
+			}
 
 			Assert.AreEqual(5, products.Count);
 		}
@@ -69,11 +80,15 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsWithVendorNameQTest()
 		{
-			ExtendingMethods extendingMethods = new ExtendingMethods();
-			Methods methods = new Methods();
-			string products = extendingMethods.GetProductsWithVendorNameQ(methods.GetProductsByName(""));
-			methods.CloseConnection();
-			extendingMethods.CloseConnecion();
+			string products;
+			using (ExtendingMethods extendingMethods = new ExtendingMethods())
+			{
+				using (Methods methods = new Methods())
+				{
+					products = extendingMethods.GetProductsWithVendorNameQ(methods.GetProductsByName(""));
+				}
+			}
+
 			List<string> productsList = products.Split('\n').ToList();
 			productsList.Sort();
 
@@ -86,11 +101,15 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsNamesWithVendorNameMTest()
 		{
-			ExtendingMethods extendingMethods = new ExtendingMethods();
-			Methods methods = new Methods();
-			string products = extendingMethods.GetProductsWithVendorNameQ(methods.GetProductsByName(""));
-			methods.CloseConnection();
-			extendingMethods.CloseConnecion();
+			string products;
+			using (ExtendingMethods extendingMethods = new ExtendingMethods())
+			{
+				using (Methods methods = new Methods())
+				{
+					products = extendingMethods.GetProductsWithVendorNameQ(methods.GetProductsByName(""));
+				}
+			}
+
 			List<string> productsList = products.Split('\n').ToList();
 			productsList.Sort();
 

@@ -9,9 +9,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByNameTest()
 		{
-			Methods methods = new Methods();
-			List<Product> products = methods.GetProductsByName("Metal Sheet");
-			methods.CloseConnection();
+			List<Product> products;
+			using (Methods methods = new Methods())
+			{
+				products = methods.GetProductsByName("Metal Sheet");
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -31,9 +34,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsByVendorNameTest()
 		{
-			Methods methods = new Methods();
-			List<Product> products = methods.GetProductsByVendorName("Custom Frames, Inc.");
-			methods.CloseConnection();
+			List<Product> products;
+			using (Methods methods = new Methods())
+			{
+				products = methods.GetProductsByVendorName("Custom Frames, Inc.");
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -53,9 +59,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductNamesByVendorNameTest()
 		{
-			Methods methods = new Methods();
-			List<string> products = methods.GetProductNamesByVendorName("Custom Frames, Inc.");
-			methods.CloseConnection();
+			List<string> products;
+			using (Methods methods = new Methods())
+			{
+				products = methods.GetProductNamesByVendorName("Custom Frames, Inc.");
+			}
+
 			products.Sort();
 
 			Assert.AreEqual(14, products.Count);
@@ -71,9 +80,11 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductVendorByProductNameTest()
 		{
-			Methods methods = new Methods();
-			string vendorName = methods.GetProductVendorByProductName("Metal Sheet 1");
-			methods.CloseConnection();
+			string vendorName;
+			using (Methods methods = new Methods())
+			{
+				vendorName = methods.GetProductVendorByProductName("Metal Sheet 1");
+			}
 
 			Assert.AreEqual("Custom Frames, Inc.", vendorName);
 		}
@@ -81,9 +92,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductsWithNRecentReviewsTest()
 		{
-			Methods methods = new Methods();
-			List<Product> products = methods.GetProductsWithNRecentReviews(5);
-			methods.CloseConnection();
+			List<Product> products;
+			using (Methods methods = new Methods())
+			{
+				products = methods.GetProductsWithNRecentReviews(5);
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -99,9 +113,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetNRecentlyReviewedProductsTest()
 		{
-			Methods methods = new Methods();
-			List<Product> products = methods.GetNRecentlyReviewedProducts(4);
-			methods.CloseConnection();
+			List<Product> products;
+			using (Methods methods = new Methods())
+			{
+				products = methods.GetNRecentlyReviewedProducts(4);
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -118,9 +135,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetNProductsFromCategoryTest()
 		{
-			Methods methods = new Methods();
-			List<Product> products = methods.GetNProductsFromCategory("Bikes", 5);
-			methods.CloseConnection();
+			List<Product> products;
+			using (Methods methods = new Methods())
+			{
+				products = methods.GetNProductsFromCategory("Bikes", 5);
+			}
+
 			products.Sort(
 				delegate (Product p1, Product p2)
 				{
@@ -138,10 +158,12 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetTotalStandardCostByCategoryTest()
 		{
-			Methods methods = new Methods();
-			ProductCategory bikes = methods.GetProductCategoryByName("Bikes");
-			int cost = methods.GetTotalStandardCostByCategory(bikes);
-			methods.CloseConnection();
+			int cost;
+			using (Methods methods = new Methods())
+			{
+				ProductCategory bikes = methods.GetProductCategoryByName("Bikes");
+				cost = methods.GetTotalStandardCostByCategory(bikes);
+			}
 
 			Assert.AreEqual(92092, cost);
 		}
@@ -149,9 +171,11 @@ namespace Task03.Tests
 		[TestMethod()]
 		public void GetProductCategoryByNameTest()
 		{
-			Methods methods = new Methods();
-			ProductCategory productCategory = methods.GetProductCategoryByName("Bikes");
-			methods.CloseConnection();
+			ProductCategory productCategory;
+			using (Methods methods = new Methods())
+			{
+				productCategory = methods.GetProductCategoryByName("Bikes");
+			}
 
 			Assert.AreEqual("Bikes", productCategory.Name);
 		}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task03
 {
-    public class ExtendingMethods
+    public class ExtendingMethods : IDisposable
     {
         private ProductionDataContext context = new ProductionDataContext();
 
@@ -54,7 +54,7 @@ namespace Task03
             return String.Join("\n", lines.ToArray());
         }
 
-        public void CloseConnecion()
+        public void Dispose()
 		{
             if (context.DatabaseExists())
 			{
