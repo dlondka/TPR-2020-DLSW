@@ -2,60 +2,76 @@
 
 namespace Task03
 {
-    public class MyDataContext
-    {
-        public List<MyCategory> Categories;
-        public List<MyProduct> Products;
-        public List<MyVendor> Vendors;
+	public class MyDataContext
+	{
+		public List<MyCategory> Categories;
+		public List<MyProduct> Products;
+		public List<MyVendor> Vendors;
 
-        public MyDataContext()
-        {
-            Categories = new List<MyCategory>();
-            Products = new List<MyProduct>();
-            Vendors = new List<MyVendor>();
-            Fill();
-        }
+		public MyDataContext()
+		{
+			Categories = new List<MyCategory>();
+			Products = new List<MyProduct>();
+			Vendors = new List<MyVendor>();
+			Fill();
+		}
 
-        private void Fill()
-        {
-            MyCategory c1 = new MyCategory();
-            c1.Name = "Books";
-            MyCategory c2 = new MyCategory();
-            c2.Name = "Sweets";
+		private void Fill()
+		{
+			MyCategory c1 = new MyCategory
+			{
+				Name = "Books"
+			};
+			MyCategory c2 = new MyCategory
+			{
+				Name = "Sweets"
+			};
 
-            MyVendor v1 = new MyVendor();
-            v1.Name = "Altenberg";
-            MyVendor v2 = new MyVendor();
-            v2.Name = "E.Wedel";
+			MyVendor v1 = new MyVendor
+			{
+				Name = "Altenberg"
+			};
+			MyVendor v2 = new MyVendor
+			{
+				Name = "E.Wedel"
+			};
 
-            MyProduct p1 = new MyProduct();
-            p1.Name = "Przepis na człowieka";
-            p1.Category = c1;
-            p1.Vendor = v1;
+			MyProduct p1 = new MyProduct
+			{
+				Name = "Przepis na człowieka",
+				Category = c1,
+				Vendor = v1
+			};
 
-            MyProduct p2 = new MyProduct();
-            p2.Name = "Włam się do mózgu";
-            p2.Vendor = v1;
-            p2.Category = c1;
+			MyProduct p2 = new MyProduct
+			{
+				Name = "Włam się do mózgu",
+				Vendor = v1,
+				Category = c1
+			};
 
-            MyProduct p3 = new MyProduct();
-            p3.Name = "Milka";
-            p3.Vendor = v2;
-            p3.Category = c2;
+			MyProduct p3 = new MyProduct
+			{
+				Name = "Milka",
+				Vendor = v2,
+				Category = c2
+			};
 
-            MyProduct p4 = new MyProduct();
-            p4.Name = "Piernik";
-            p4.Category = c2;
-            p4.Vendor = v2;
+			MyProduct p4 = new MyProduct
+			{
+				Name = "Piernik",
+				Category = c2,
+				Vendor = v2
+			};
 
-            Categories.Add(c1);
-            Categories.Add(c2);
-            Vendors.Add(v1);
-            Vendors.Add(v2);
-            Products.Add(p1);
-            Products.Add(p2);
-            Products.Add(p3);
-            Products.Add(p4);
-        }
-    }
+			Categories.Add(c1);
+			Categories.Add(c2);
+			Vendors.Add(v1);
+			Vendors.Add(v2);
+			Products.Add(p1);
+			Products.Add(p2);
+			Products.Add(p3);
+			Products.Add(p4);
+		}
+	}
 }

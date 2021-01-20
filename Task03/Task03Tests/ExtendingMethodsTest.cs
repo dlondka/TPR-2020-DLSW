@@ -1,8 +1,5 @@
-﻿using Task03;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 
 namespace Task03.Tests
