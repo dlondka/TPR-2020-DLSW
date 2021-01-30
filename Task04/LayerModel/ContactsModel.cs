@@ -4,7 +4,7 @@ using LayerData;
 
 namespace LayerModel
 {
-	public class ContactsModel
+	public class ContactsModel : IContactsModel
 	{
 		private readonly IContactsRepository ContactsRepository;
 
