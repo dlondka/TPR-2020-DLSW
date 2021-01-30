@@ -49,11 +49,21 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ContactsRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Task03\Task03\LayerData.csproj">
+      <Project>{A3E6137D-5B51-4B8E-AA2A-065660BBB53D}</Project>
+      <Name>LayerData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LayerServices\LayerServices.csproj">
+      <Project>{920BEFDA-B2AC-45A1-A3F6-4995965230F1}</Project>
+      <Name>LayerServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

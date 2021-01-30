@@ -44,17 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtendingMethods.cs" />
-    <Compile Include="Methods.cs" />
-    <Compile Include="Model\MyCategory.cs" />
-    <Compile Include="Model\MyProduct.cs" />
-    <Compile Include="Model\MyVendor.cs" />
-    <Compile Include="MyDataContext.cs" />
-    <Compile Include="MyMethods.cs" />
-    <Compile Include="Production.designer.cs">
+    <Compile Include="ContactTypeDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Production.dbml</DependentUpon>
+      <DependentUpon>ContactTypeDB.dbml</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,17 +56,15 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Queries.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="Production.dbml">
+    <None Include="ContactTypeDB.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Production.designer.cs</LastGenOutput>
+      <LastGenOutput>ContactTypeDB.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Production.dbml.layout">
-      <DependentUpon>Production.dbml</DependentUpon>
+    <None Include="ContactTypeDB.dbml.layout">
+      <DependentUpon>ContactTypeDB.dbml</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
