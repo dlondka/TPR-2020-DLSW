@@ -1,0 +1,25 @@
+﻿<Window x:Class="LayerView.AddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LayerView"
+        mc:Ignorable="d"
+        Title="AddWindow" Height="200" Width="400">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*" />
+            <ColumnDefinition Width="45*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding CurrentName}"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <Button Grid.Column="1" Grid.Row="1" Command="{Binding ConfirmAddProperty}" Content="Add contact type" 
+                Height="40" Width="170" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Grid>
+</Window>

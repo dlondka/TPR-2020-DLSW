@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LayerView"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800">
     <Grid>
+        <ListView Name="ContactTypeList" ItemsSource="{Binding ContactTypes}" SelectedItem="{Binding CurrentContactType}"
+                  Height="400" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" Width="400"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding ModifiedDate}" Header="Modification date" Width="400"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="120, 400, 0, 0">
+            <Button Command="{Binding ShowAddWindowProperty}" Content="Add content type" Height="20" Width="120" />
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="540, 400, 0, 0">
+            <Button Command="{Binding DeleteContactTypeProperty}" Content="Delete content type" Height="20" Width="120" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="120, 440, 0, 0">
+            <Button Command="{Binding ShowDetailsWindowProperty}" Content="Show details" Height="20" Width="120" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="540, 440, 0, 0">
+            <Button Command="{Binding RefreshProperty}" Content="Show details" Height="20" Width="120" />
+        </StackPanel>
+        
         
     </Grid>
 </Window>

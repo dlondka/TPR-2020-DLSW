@@ -4,7 +4,7 @@ using LayerModel;
 
 namespace LayerViewModel
 {
-    public class ViewModel
+    public class ViewModel : ViewModelListener
     {
         private List<ContactType> _contactTypes;
         private ContactType _currentContactType;
