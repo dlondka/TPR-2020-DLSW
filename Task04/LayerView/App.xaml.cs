@@ -8,10 +8,10 @@ using System.Windows;
 
 namespace LayerView
 {
-	/// <summary>
-	/// Logika interakcji dla klasy App.xaml
-	/// </summary>
-	public partial class App : Application
-	{
-	}
+    /// <summary>
+    /// Logika interakcji dla klasy App.xaml
+    /// </summary>
+    public partial class App : Application
+    {
+    }
 }

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{405904B4-94E5-4893-BC8B-3951D6F2BA95}</ProjectGuid>
+    <ProjectGuid>{D7EEC298-6864-4117-A36C-F7F465E61FAF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>LayerView</RootNamespace>
     <AssemblyName>LayerView</AssemblyName>
