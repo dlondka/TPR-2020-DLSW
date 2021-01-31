@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LayerView"
+        xmlns:vm="clr-namespace:LayerViewModel;assembly=LayerViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="550" Width="800">
+    
+    <Window.DataContext>
+        <vm:ViewModel />
+    </Window.DataContext>
+    
     <Grid>
         <ListView Name="ContactTypeList" ItemsSource="{Binding ContactTypes}" SelectedItem="{Binding CurrentContactType}"
                   Height="400" VerticalAlignment="Top">
@@ -20,11 +26,11 @@
         </ListView>
         
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="120, 400, 0, 0">
-            <Button Command="{Binding ShowAddWindowProperty}" Content="Add content type" Height="20" Width="120" />
+            <Button Command="{Binding ShowAddWindowProperty}" Content="Add contact type" Height="20" Width="120" />
         </StackPanel>
         
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="540, 400, 0, 0">
-            <Button Command="{Binding DeleteContactTypeProperty}" Content="Delete content type" Height="20" Width="120" />
+            <Button Command="{Binding DeleteContactTypeProperty}" Content="Delete contact type" Height="20" Width="120" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="120, 440, 0, 0">
@@ -32,7 +38,7 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="0" Margin="540, 440, 0, 0">
-            <Button Command="{Binding RefreshProperty}" Content="Show details" Height="20" Width="120" />
+            <Button Command="{Binding RefreshProperty}" Content="Refresh" Height="20" Width="120" />
         </StackPanel>
         
         

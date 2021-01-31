@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using LayerModel;
 
@@ -25,6 +26,7 @@ namespace LayerViewModel
             set
             {
                 _contactTypes = value;
+                onPropertyChanged();
             }
         }
         public ContactType CurrentContactType
@@ -36,6 +38,7 @@ namespace LayerViewModel
             set
             {
                 _currentContactType = value;
+                onPropertyChanged();
             }
         }
         public int CurrentContactTypeID
@@ -47,6 +50,7 @@ namespace LayerViewModel
             set
             {
                 _currentContactTypeID = value;
+                onPropertyChanged();
             }
         }
         public string CurrentName
@@ -58,6 +62,7 @@ namespace LayerViewModel
             set
             {
                 _currentName = value;
+                onPropertyChanged();
             }
         }
         public DateTime CurrentModifiedDate
@@ -69,16 +74,17 @@ namespace LayerViewModel
             set
             {
                 _currentModifiedDate = value;
+                onPropertyChanged();
             }
         }
         #endregion
 
         #region Commands
-        public Command ShowWindowProperty { get; private set; }
+        public Command ShowAddWindowProperty { get; private set; }
 
         public Command ShowDetailsWindowProperty { get; private set; }
 
-        public Command DeleteDepartmentProperty { get; set; }
+        public Command DeleteContactTypeProperty { get; set; }
 
         public Command RefreshProperty { get; set; }
 
@@ -163,5 +169,6 @@ namespace LayerViewModel
             window.Show();
         }
         #endregion
+
     }
 }
