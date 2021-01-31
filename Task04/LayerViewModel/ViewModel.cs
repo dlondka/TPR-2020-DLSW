@@ -117,9 +117,19 @@ namespace LayerViewModel
             ContactTypes = ContactsModel.GetContactTypes();
             ShowDetailsWindowProperty = new Command(ShowAddWindow);
             ShowDetailsWindowProperty = new Command(ShowDetailsWindow);
+            DeleteContactTypeProperty = new Command(DeleteContactType);
             RefreshProperty = new Command(Refresh);
             ConfirmAddProperty = new Command(ConfirmAdd);
             ConfirmEditProperty = new Command(ConfirmEdit);
+        }
+
+        private void DeleteContactType()
+        {
+            Task.Run(() =>
+            {
+                ContactsModel.RemoveContactType(CurrentContactType.ContactTypeID);
+                Refresh();
+            });
         }
 
         #region Actions
