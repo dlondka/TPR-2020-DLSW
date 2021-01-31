@@ -17,8 +17,9 @@ namespace LayerView
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-            ViewModel viewModel = (ViewModel)DataContext;
-            //viewModel.AddWindow = new Lazy<IWindow>(() new => Add());
+            LayerViewModel.ViewModel viewModel = (LayerViewModel.ViewModel)DataContext;
+            viewModel.AddWindow = new Lazy<LayerViewModel.IWindow>(() => new Add());
+            viewModel.DetailsWindow = new Lazy<LayerViewModel.IWindow>(() => new Details());
         }
     }
 }
