@@ -11,8 +11,8 @@ namespace LayerServices
 	{
 		void AddContactType(string name);
 		int GetContactIDByName(string name);
-		ContactType GetContactType(int id);
-		List<ContactType> GetContactTypes();
+		ContactTypeWrapper GetContactType(int id);
+		List<ContactTypeWrapper> GetContactTypes();
 		void UpdateContactType(int contactID, string name);
 		void RemoveContactType(int contactID);
 	}

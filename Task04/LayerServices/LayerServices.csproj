@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactTypeWrapper.cs" />
     <Compile Include="IContactsRepository.cs" />
     <Compile Include="ContactsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

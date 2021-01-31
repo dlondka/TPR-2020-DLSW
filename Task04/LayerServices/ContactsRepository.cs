@@ -33,7 +33,7 @@ namespace LayerServices
 			return contact.ContactTypeID;
 		}
 
-		public ContactType GetContactType(int id)
+		public ContactTypeWrapper GetContactType(int id)
 		{
 			ContactType contact = new ContactType();
 
@@ -41,10 +41,10 @@ namespace LayerServices
 			{
 				contact = Context.ContactType.Where(ct => ct.ContactTypeID == id).FirstOrDefault();
 			}
-			return contact;
+			return new ContactTypeWrapper(contact);
 		}
 
-		public List<ContactType> GetContactTypes()
+		public List<ContactTypeWrapper> GetContactTypes()
 		{
 			List<ContactType> contacts = new List<ContactType>();
 
@@ -52,8 +52,13 @@ namespace LayerServices
 			{
 				contacts = Context.ContactType.ToList();
 			}
+			List<ContactTypeWrapper> contactTypeWrappers = new List<ContactTypeWrapper>();
+			foreach (ContactType contact in contacts)
+            {
+				contactTypeWrappers.Add(new ContactTypeWrapper(contact));
+            }
 
-			return contacts;
+			return contactTypeWrappers;
 		}
 
 		public void RemoveContactType(int contactID)

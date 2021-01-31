@@ -3,7 +3,7 @@ using System;
 
 namespace LayerModel
 {
-    class ContactType
+    public class ContactType
     {
         private int _contactTypeID;
         private string _name;

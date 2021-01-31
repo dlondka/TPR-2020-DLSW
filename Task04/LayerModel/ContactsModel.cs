@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using LayerServices;
-using LayerData;
 
 namespace LayerModel
 {
@@ -30,12 +29,17 @@ namespace LayerModel
 
 		public ContactType GetContactType(int id)
 		{
-			return ContactsRepository.GetContactType(id);
+			return new ContactType(ContactsRepository.GetContactType(id));
 		}
 
 		public List<ContactType> GetContactTypes()
 		{
-			return ContactsRepository.GetContactTypes();
+			List<ContactType> contacts = new List<ContactType>();
+			foreach (ContactTypeWrapper wrapper in ContactsRepository.GetContactTypes())
+            {
+				contacts.Add(new ContactType(wrapper));
+            }
+			return contacts;
 		}
 
 		public void UpdateContactType(int contactID, string name)
