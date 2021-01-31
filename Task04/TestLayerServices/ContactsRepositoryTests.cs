@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using LayerData;
 
 namespace LayerServices.Tests
 {
@@ -27,7 +26,7 @@ namespace LayerServices.Tests
 		public void GetContactTypesTest()
 		{
 			ContactsRepository repo = new ContactsRepository();
-			List<ContactType> list = repo.GetContactTypes();
+			List<ContactTypeWrapper> list = repo.GetContactTypes();
 
 			Assert.AreEqual(20, repo.GetContactTypes().Count);
 			Assert.AreEqual(repo.GetContactIDByName("Owner"), list[10].ContactTypeID);
