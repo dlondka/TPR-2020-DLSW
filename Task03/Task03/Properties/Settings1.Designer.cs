@@ -31,7 +31,7 @@ namespace Task03.Properties
 		[global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"D:\\Apps\\Microsoft SQL Server" +
 			"\\MSSQL15.SQLEXPRESS\\MSSQL\\DATA\\AdventureWorks.mdf\";Integrated Security=True;Conn" +
 			"ect Timeout=30")]
-		public string AdventureWorksConnectionString1
+		public string AdventureWorksConnectionString
 		{
 			get
 			{
@@ -45,7 +45,7 @@ namespace Task03.Properties
 		[global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"J:\\Instala\\SQL\\MSSQL15.SQLEX" +
 			"PRESS\\MSSQL\\DATA\\AdventureWorks.mdf\";Integrated Security=True;Connect Timeout=30" +
 			"")]
-		public string AdventureWorksConnectionString
+		public string AdventureWorksConnectionString1
 		{
 			get
 			{

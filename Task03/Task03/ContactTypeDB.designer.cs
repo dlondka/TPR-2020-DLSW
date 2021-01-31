@@ -36,7 +36,7 @@ namespace LayerData
     #endregion
 		
 		public ContactTypeDBDataContext() : 
-				base(global::Task03.Properties.Settings.Default.AdventureWorksConnectionString, mappingSource)
+				base(global::Task03.Properties.Settings.Default.AdventureWorksConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
