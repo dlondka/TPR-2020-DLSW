@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayerModel", "LayerModel\La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LayerData", "..\Task03\Task03\LayerData.csproj", "{A3E6137D-5B51-4B8E-AA2A-065660BBB53D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLayerData", "..\Task03\Task03Tests\TestLayerData.csproj", "{A943BC4E-9279-4329-BAB1-63463F10BC38}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLayerModel", "TestLayerModel\TestLayerModel.csproj", "{58139A22-73F3-4F90-8F9F-52D871904E67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLayerServices", "TestLayerServices\TestLayerServices.csproj", "{7B1B7D2A-7063-469D-8B6E-52D9579D6AFD}"
@@ -22,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLayerView", "TestLayerView\TestLayerView.csproj", "{5911465C-CEED-403A-9C4C-21D20FF62D0C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLayerViewModel", "TestLayerViewModel\TestLayerViewModel.csproj", "{B61FE939-F5B6-427D-B5BC-F05134C6DD48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLayerData", "TestLayerData\TestLayerData.csproj", "{176F3976-24CA-4F25-B4E6-DCC8F9F44C77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,10 +49,6 @@ Global
 		{A3E6137D-5B51-4B8E-AA2A-065660BBB53D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3E6137D-5B51-4B8E-AA2A-065660BBB53D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3E6137D-5B51-4B8E-AA2A-065660BBB53D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A943BC4E-9279-4329-BAB1-63463F10BC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A943BC4E-9279-4329-BAB1-63463F10BC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A943BC4E-9279-4329-BAB1-63463F10BC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A943BC4E-9279-4329-BAB1-63463F10BC38}.Release|Any CPU.Build.0 = Release|Any CPU
 		{58139A22-73F3-4F90-8F9F-52D871904E67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{58139A22-73F3-4F90-8F9F-52D871904E67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58139A22-73F3-4F90-8F9F-52D871904E67}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{B61FE939-F5B6-427D-B5BC-F05134C6DD48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B61FE939-F5B6-427D-B5BC-F05134C6DD48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B61FE939-F5B6-427D-B5BC-F05134C6DD48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{176F3976-24CA-4F25-B4E6-DCC8F9F44C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{176F3976-24CA-4F25-B4E6-DCC8F9F44C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{176F3976-24CA-4F25-B4E6-DCC8F9F44C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{176F3976-24CA-4F25-B4E6-DCC8F9F44C77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
