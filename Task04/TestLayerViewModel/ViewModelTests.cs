@@ -17,6 +17,7 @@ namespace LayerViewModel.Tests
 		{
 			ViewModel vm = new ViewModel(new ContactsModel());
 			int i = vm.ContactTypes.Count;
+			Assert.AreEqual(20, vm.ContactTypes.Count);
 			vm.CurrentName = "Test";
 			vm.ConfirmAdd();
 			System.Threading.Thread.Sleep(300);
