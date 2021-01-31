@@ -8,5 +8,6 @@ namespace LayerViewModel
 {
     public class Class1
     {
+
     }
 }
