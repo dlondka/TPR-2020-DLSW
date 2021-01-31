@@ -115,13 +115,16 @@ namespace LayerViewModel
         private void init()
         {
             ContactTypes = ContactsModel.GetContactTypes();
-            ShowDetailsWindowProperty = new Command(ShowAddWindow);
+            ShowAddWindowProperty = new Command(ShowAddWindow);
             ShowDetailsWindowProperty = new Command(ShowDetailsWindow);
             DeleteContactTypeProperty = new Command(DeleteContactType);
             RefreshProperty = new Command(Refresh);
             ConfirmAddProperty = new Command(ConfirmAdd);
             ConfirmEditProperty = new Command(ConfirmEdit);
         }
+
+
+        #region Actions
 
         private void DeleteContactType()
         {
@@ -131,8 +134,6 @@ namespace LayerViewModel
                 Refresh();
             });
         }
-
-        #region Actions
 
         private void ConfirmEdit()
         {

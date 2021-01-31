@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Column="0" Grid.Row="0" Text="Name" FontSize="20"  HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding CurrentName}"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding CurrentName}" Width="200" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" />
 
         <Button Grid.Column="1" Grid.Row="1" Command="{Binding ConfirmAddProperty}" Content="Add contact type" 
                 Height="40" Width="170" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
