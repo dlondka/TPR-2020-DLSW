@@ -47,10 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Task03\Task03\LayerData.csproj">
-      <Project>{a3e6137d-5b51-4b8e-aa2a-065660bbb53d}</Project>
-      <Name>LayerData</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LayerServices\LayerServices.csproj">
       <Project>{920befda-b2ac-45a1-a3f6-4995965230f1}</Project>
       <Name>LayerServices</Name>
