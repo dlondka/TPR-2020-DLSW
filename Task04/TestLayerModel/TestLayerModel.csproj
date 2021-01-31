@@ -64,6 +64,10 @@
       <Project>{F136E3F8-A8D5-4D9B-8E37-12396B2942BA}</Project>
       <Name>LayerModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LayerViewModel\LayerViewModel.csproj">
+      <Project>{9bfb50e8-f09e-49ec-9e5e-214f478e19f8}</Project>
+      <Name>LayerViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
